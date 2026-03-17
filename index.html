@@ -3,116 +3,79 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Afruza Vahobjon qizi | Portfolio</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <title>Mening Shaxsiy Saytim</title>
+    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-
-        body {
-            font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #ff7eb3 100%);
-            background-attachment: fixed;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 40px 15px;
-            min-height: 100vh;
-        }
-
-        .card {
-            background: white;
-            border-radius: 25px;
-            padding: 30px 20px;
-            width: 100%;
-            max-width: 380px;
-            margin-bottom: 20px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-            text-align: center;
-        }
-
-        /* Profil bo'limi rasmiz holatda */
-        h1 { font-size: 24px; color: #2d3436; margin-bottom: 8px; }
-        .subtitle { font-size: 15px; color: #636e72; margin-bottom: 25px; font-weight: 300; }
-
-        .social-btns {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-        }
-
-        .s-btn {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: #7d5fff;
-            color: white;
-            text-decoration: none;
-            font-size: 20px;
-            transition: 0.3s ease;
-        }
-
-        .s-btn:hover { transform: translateY(-5px); box-shadow: 0 5px 15px rgba(125,95,255,0.4); }
-
-        /* Bo'limlar */
-        .title {
-            text-align: left;
-            font-size: 17px;
-            font-weight: 600;
-            color: #4b0082;
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .box {
-            background: #f8f9fa;
-            padding: 15px;
-            border-radius: 15px;
-            margin-bottom: 12px;
-            text-align: left;
-            font-size: 14px;
-            border-left: 4px solid #7d5fff;
-        }
-
-        .skill-bar { text-align: left; margin-bottom: 18px; }
-        .bar-bg { height: 10px; background: #eee; border-radius: 10px; margin-top: 8px; }
-        .bar-fill { height: 100%; background: linear-gradient(90deg, #7d5fff, #ff7eb3); border-radius: 10px; }
-    </style>
 </head>
 <body>
 
-    <div class="card">
-        <h1>Rahmonova Afruza Vahobjon qizi</h1>
-        <p class="subtitle">Qarshi davlat universiteti talabasi</p>
-        <div class="social-btns">
-            <a href="https://t.me/afruza_user" class="s-btn"><i class="fab fa-telegram-plane"></i></a>
-            <a href="mailto:afruzaraxmonova7@gmail.com" class="s-btn"><i class="fas fa-envelope"></i></a>
-            <a href="https://github.com/afruzaraxmonova7-spec" class="s-btn"><i class="fab fa-github"></i></a>
-        </div>
-    </div>
+    <nav>
+        <div class="logo">MeningSaytim</div>
+        <ul>
+            <li><a href="#home">Asosiy</a></li>
+            <li><a href="#about">Men haqimda</a></li>
+            <li><a href="#projects">Loyihalar</a></li>
+            <li><a href="#contact">Bog'lanish</a></li>
+        </ul>
+    </nav>
 
-    <div class="card">
-        <div class="title"><i class="fas fa-graduation-cap"></i> Ma'lumot</div>
-        <div class="box"><b>Fakultet:</b> Matematika va kompyuter ilmlari (ATT)</div>
-        <div class="box"><b>Maqsad:</b> IT sohasida kuchli mutaxassis bo'lish</div>
-    </div>
+    <header id="home">
+        <div class="header-content">
+            <h1>Xush kelibsiz!</h1>
+            <p>Men dasturchi va kreativ g'oyalar muallifiman.</p>
+            <a href="#projects" class="btn">Ishlarimni ko'rish</a>
+        </div>
+    </header>
 
-    <div class="card">
-        <div class="title"><i class="fas fa-star"></i> Ko'nikmalar</div>
-        <div class="skill-bar">
-            <span>HTML / CSS</span>
-            <div class="bar-bg"><div class="bar-fill" style="width: 85%;"></div></div>
+    <section id="about" class="container">
+        <h2 class="section-title">Men haqimda</h2>
+        <div class="about-flex">
+            <div class="about-text">
+                <p>Assalomu alaykum! Mening ismim Afruza. Men veb-texnologiyalar va dasturlashga qiziqaman. Ushbu sayt orqali o'z tajribam va loyihalarim bilan o'rtoqlashaman.</p>
+                <ul class="skills">
+                    <li><i class="fab fa-html5"></i> HTML</li>
+                    <li><i class="fab fa-css3-alt"></i> CSS</li>
+                    <li><i class="fab fa-js"></i> JavaScript</li>
+                    <li><i class="fab fa-github"></i> GitHub</li>
+                </ul>
+            </div>
         </div>
-        <div class="skill-bar">
-            <span>Veb Dizayn</span>
-            <div class="bar-bg"><div class="bar-fill" style="width: 75%;"></div></div>
+    </section>
+
+    <section id="projects" class="bg-light">
+        <div class="container">
+            <h2 class="section-title">Mening Loyihalarim</h2>
+            <div class="project-grid">
+                <div class="project-card">
+                    <h3>Loyiha 1</h3>
+                    <p>Bu yerga loyihangiz haqida qisqacha ma'lumot yozishingiz mumkin.</p>
+                    <a href="#" class="more-link">Batafsil...</a>
+                </div>
+                <div class="project-card">
+                    <h3>Loyiha 2</h3>
+                    <p>Ikkinchi loyihangiz tavsifi va uning asosiy funksiyalari haqida.</p>
+                    <a href="#" class="more-link">Batafsil...</a>
+                </div>
+                <div class="project-card">
+                    <h3>Loyiha 3</h3>
+                    <p>Uchinchi loyihangiz va qo'shimcha ma'lumotlar bu yerda bo'ladi.</p>
+                    <a href="#" class="more-link">Batafsil...</a>
+                </div>
+            </div>
         </div>
-    </div>
+    </section>
+
+    <footer id="contact">
+        <div class="container">
+            <h2>Men bilan bog'laning</h2>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-telegram"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-github"></i></a>
+            </div>
+            <p>&copy; 2026 Barcha huquqlar himoyalangan.</p>
+        </div>
+    </footer>
 
 </body>
 </html>
