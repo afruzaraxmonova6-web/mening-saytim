@@ -3,251 +3,190 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Afruza | Mening Rangli Dunyoim</title>
+    <title>Afruza | Professional Portfolio</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans&display=swap" rel="stylesheet">
     <style>
-        /* ASOSIY RANG VA STIL SOZLAMALARI */
-        :root {
-            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            --secondary-gradient: linear-gradient(to right, #ff7e5f, #feb47b);
-            --dark-color: #2d3436;
-            --light-color: #ffffff;
-        }
-
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Montserrat', sans-serif;
             scroll-behavior: smooth;
         }
 
-        body {
-            background-color: #f9f9f9;
-            color: var(--dark-color);
-        }
-
-        /* NAVBAR - RANGDOR VA DOIMIY TEPADA */
-        nav {
-            background: var(--primary-gradient);
-            padding: 15px 10%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-        }
-
-        .logo {
-            color: white;
-            font-size: 24px;
-            font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        nav ul {
-            display: flex;
-            list-style: none;
-        }
-
-        nav ul li { margin-left: 20px; }
-
-        nav ul li a {
-            color: white;
-            text-decoration: none;
-            font-weight: 500;
-            transition: 0.3s;
-            padding: 8px 15px;
-            border-radius: 20px;
-        }
-
-        nav ul li a:hover {
-            background: rgba(255, 255, 255, 0.2);
-        }
-
-        /* GERO (ASOSIY) BO'LIM - YORQIN GRADIENT */
-        .hero {
-            height: 90vh;
-            background: var(--primary-gradient);
+        /* ORQA FONGA RASM JOYLASHTIRISH */
+        header {
+            height: 100vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                        url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed; /* Parallaks effekti */
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            text-align: center;
             color: white;
-            clip-path: polygon(0 0, 100% 0, 100% 85%, 0% 100%);
-        }
-
-        .hero h1 {
-            font-size: 4rem;
-            margin-bottom: 10px;
-            text-shadow: 2px 2px 10px rgba(0,0,0,0.3);
-        }
-
-        .hero p {
-            font-size: 1.5rem;
-            margin-bottom: 30px;
-            opacity: 0.9;
-        }
-
-        .btn {
-            background: var(--secondary-gradient);
-            color: white;
-            padding: 15px 35px;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: bold;
-            box-shadow: 0 5px 15px rgba(255, 126, 95, 0.4);
-            transition: 0.3s;
-        }
-
-        .btn:hover { transform: scale(1.05); }
-
-        /* BO'LIMLAR UCHUN STIL */
-        section { padding: 100px 10%; }
-
-        .title {
             text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 50px;
-            color: #4834d4;
         }
 
-        /* MEN HAQIMDA - RANGDOR BLOK */
-        .about-container {
+        nav {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 20px 10%;
             display: flex;
+            justify-content: space-between;
             align-items: center;
-            gap: 50px;
-            background: white;
-            padding: 40px;
-            border-radius: 30px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
         }
 
-        .about-info h3 { color: #eb4d4b; margin-bottom: 15px; }
+        nav .logo { font-size: 24px; font-weight: bold; color: #00d2ff; }
+        nav ul { display: flex; list-style: none; }
+        nav ul li { margin-left: 20px; }
+        nav ul li a { color: white; text-decoration: none; transition: 0.3s; font-size: 14px; text-transform: uppercase; }
+        nav ul li a:hover { color: #00d2ff; }
 
-        /* XIZMATLAR BO'LIMI - RANGDOR KARTALAR */
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 25px;
+        .hero-text h1 { font-size: 4rem; margin-bottom: 20px; letter-spacing: 5px; }
+        .hero-text p { font-size: 1.5rem; margin-bottom: 30px; color: #00d2ff; }
+
+        section { padding: 100px 10%; }
+        .section-title { text-align: center; margin-bottom: 60px; font-size: 2.5rem; position: relative; }
+        .section-title::after {
+            content: ''; width: 100px; height: 3px; background: #00d2ff;
+            position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%);
         }
 
-        .card {
-            padding: 40px;
-            text-align: center;
-            border-radius: 20px;
-            color: white;
-            transition: 0.3s;
-        }.card:nth-child(1) { background: #6ab04c; }
-        .card:nth-child(2) { background: #f0932b; }
-        .card:nth-child(3) { background: #eb4d4b; }
-        .card:nth-child(4) { background: #7ed6df; }
+        /* STATISTIKA BO'LIMI */
+        .stats { background: #00d2ff; color: white; display: flex; justify-content: space-around; text-align: center; padding: 50px 10%; }
+        .stat-item h2 { font-size: 3rem; }
 
-        .card i { font-size: 3rem; margin-bottom: 20px; }
+        /* PORTFOLIO GALEREYA */
+        .portfolio-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+        .portfolio-item { position: relative; overflow: hidden; border-radius: 10px; height: 250px; }
+        .portfolio-item img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
+        .portfolio-item:hover img { transform: scale(1.1); }
+        .overlay {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 210, 255, 0.8); color: white;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            opacity: 0; transition: 0.5s;
+        }
+        .portfolio-item:hover .overlay { opacity: 1; }
 
-        .card:hover { transform: translateY(-10px); }
+        /* BLOG BO'LIMI */
+        .blog-container { display: flex; gap: 20px; flex-wrap: wrap; }
+        .blog-card { background: #f4f4f4; flex: 1; min-width: 300px; padding: 20px; border-radius: 10px; }
+        .blog-card h3 { margin-bottom: 10px; color: #333; }
 
         /* BOG'LANISH */
-        .contact {
-            background: #2d3436;
-            color: white;
-            text-align: center;
-        }
+        .contact-flex { display: flex; gap: 50px; }
+        .contact-info, .contact-form { flex: 1; }
+        input, textarea { width: 100%; padding: 15px; margin-bottom: 20px; border: 1px solid #ccc; border-radius: 5px; }
+        .btn-submit { background: #00d2ff; color: white; border: none; padding: 15px 30px; cursor: pointer; font-weight: bold; }footer { background: #111; color: white; text-align: center; padding: 50px; }
+        .socials a { color: white; font-size: 25px; margin: 0 10px; }
 
-        .socials a {
-            color: white;
-            font-size: 30px;
-            margin: 0 15px;
-            transition: 0.3s;
-        }
-
-        .socials a:hover { color: #fab1a0; }
-
-        footer {
-            padding: 30px;
-            background: #1e272e;
-            color: white;
-            text-align: center;
-            font-size: 14px;
-        }
-
-        /* MOBIL VERSIYA */
         @media (max-width: 768px) {
-            .hero h1 { font-size: 2.5rem; }
-            nav ul { display: none; }
+            .hero-text h1 { font-size: 2.5rem; }
+            .contact-flex { flex-direction: column; }
         }
     </style>
 </head>
 <body>
 
     <nav>
-        <div class="logo">Afruza Sayti</div>
+        <div class="logo">AFRUZA</div>
         <ul>
-            <li><a href="#home">Bosh sahifa</a></li>
+            <li><a href="#home">Asosiy</a></li>
             <li><a href="#about">Men haqimda</a></li>
-            <li><a href="#services">Xizmatlarim</a></li>
+            <li><a href="#portfolio">Portfolio</a></li>
+            <li><a href="#blog">Blog</a></li>
             <li><a href="#contact">Aloqa</a></li>
         </ul>
     </nav>
 
-    <header class="hero" id="home">
-        <h1>Xush kelibsiz!</h1>
-        <p>Mening interaktiv va rangdor portfoliomga marhamat</p>
-        <a href="#about" class="btn">Tanishishni boshlash</a>
+    <header id="home">
+        <div class="hero-text">
+            <h1>AFRUZA AXMONOVA</h1>
+            <p>WEB DEVELOPER & DIGITAL DESIGNER</p>
+            <a href="#portfolio" class="btn-submit" style="text-decoration: none;">ISHlarimni ko'ring</a>
+        </div>
     </header>
 
     <section id="about">
-        <h2 class="title">Men haqimda</h2>
-        <div class="about-container">
-            <div class="about-info">
-                <h3>Salom! Men Afruza</h3>
-                <p>Men kreativlikni va texnologiyani yaxshi ko'raman. Mening saytim — bu nafaqat ma'lumot, balki mening dunyoqarashimning aksidir. Men hozirda yangi loyihalar ustida ishlayapman va doim o'rganishdaman.</p>
+        <h2 class="section-title">Men haqimda</h2>
+        <p style="text-align: center; max-width: 800px; margin: 0 auto; font-size: 1.1rem; color: #666;">
+            Men 2026-yilning eng zamonaviy texnologiyalari bilan ishlovchi dasturchiman. 
+            Mening maqsadim nafaqat kod yozish, balki insonlar hayotini osonlashtiradigan raqamli ekotizimlar yaratishdir.
+        </p>
+    </section>
+
+    <div class="stats">
+        <div class="stat-item"><h2>50+</h2><p>Loyihalar</p></div>
+        <div class="stat-item"><h2>30+</h2><p>Mijozlar</p></div>
+        <div class="stat-item"><h2>5+</h2><p>Yillik tajriba</p></div>
+    </div>
+
+    <section id="portfolio">
+        <h2 class="section-title">Portfolio</h2>
+        <div class="portfolio-grid">
+            <div class="portfolio-item">
+                <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=500&q=60" alt="">
+                <div class="overlay"><h3>Veb Dizayn</h3><p>Landing Page yaratish</p></div>
+            </div>
+            <div class="portfolio-item">
+                <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=500&q=60" alt="">
+                <div class="overlay"><h3>Dasturlash</h3><p>Sloja ilovalar</p></div>
+            </div>
+            <div class="portfolio-item">
+                <img src="https://images.unsplash.com/photo-1551288049-bbbda536339a?auto=format&fit=crop&w=500&q=60" alt="">
+                <div class="overlay"><h3>Grafika</h3><p>Logo va Brending</p></div>
             </div>
         </div>
     </section>
 
-    <section id="services" style="background-color: #f1f2f6;">
-        <h2 class="title">Nimalar qila olaman?</h2>
-        <div class="grid">
-            <div class="card">
-                <i class="fas fa-laptop-code"></i>
-                <h3>Dasturlash</h3>
-                <p>Zamonaviy veb-saytlar yaratish.</p>
+    <section id="blog" style="background: #fff;">
+        <h2 class="section-title">Oxirgi Maqolalar</h2>
+        <div class="blog-container">
+            <div class="blog-card">
+                <h3>Veb 3.0 Kelajagi</h3>
+                <p>Internetning yangi davri qanday bo'ladi va bizni nimalar kutyapti?</p>
+                <br><a href="#" style="color: #00d2ff;">O'qish →</a>
             </div>
-            <div class="card">
-                <i class="fas fa-palette"></i>
-                <h3>Dizayn</h3>
-                <p>Ranglar bilan chiroyli uyg'unlik.</p>
-            </div>
-            <div class="card">
-                <i class="fas fa-rocket"></i>
-                <h3>Tezkorlik</h3>
-                <p>Sifatli va tezkor natijalar.</p>
-            </div>
-            <div class="card">
-                <i class="fas fa-mobile"></i>
-                <h3>Moslashuvchan</h3>
-                <p>Barcha qurilmalar uchun qulay.</p>
+            <div class="blog-card">
+                <h3>Sun'iy Intellekt</h3>
+                <p>Dizaynerlar ishini AI qanday o'zgartirmoqda?</p>
+                <br><a href="#" style="color: #00d2ff;">O'qish →</a>
             </div>
         </div>
     </section>
 
-    <section id="contact" class="contact">
-        <h2 class="title" style="color: white;">Men bilan bog'lanish</h2>
-        <p style="margin-bottom: 30px;">Xabar yozish uchun ijtimoiy tarmoqlardan foydalaning:</p>
-        <div class="socials">
-            <a href="#"><i class="fab fa-telegram"></i></a>
-            <a href="#"><i class="fab fa-instagram"></i></a>
-            <a href="#"><i class="fab fa-github"></i></a>
+    <section id="contact">
+        <h2 class="section-title">Bog'lanish</h2>
+        <div class="contact-flex">
+            <div class="contact-info">
+                <h3>Men bilan bog'laning</h3>
+                <p><i class="fas fa-envelope"></i> afruza@example.com</p>
+                <p><i class="fas fa-phone"></i> +998 90 123 45 67</p>
+                <div class="socials" style="margin-top: 20px; text-align: left;">
+                    <a href="#" style="color: #333;"><i class="fab fa-telegram"></i></a>
+                    <a href="#" style="color: #333;"><i class="fab fa-instagram"></i></a></div>
+            </div>
+            <div class="contact-form">
+                <form>
+                    <input type="text" placeholder="Ismingiz" required>
+                    <input type="email" placeholder="Emailingiz" required>
+                    <textarea rows="5" placeholder="Xabaringiz"></textarea>
+                    <button type="submit" class="btn-submit">YUBORISH</button>
+                </form>
+            </div>
         </div>
     </section>
 
     <footer>
-        <p>&copy; 2026 Afruza Axmonova. Barcha loyihalar mualliflik huquqi bilan himoyalangan.</p>
+        <p>&copy; 2026 Afruza Axmonova. Barcha huquqlar himoyalangan.</p>
     </footer>
 
 </body>
