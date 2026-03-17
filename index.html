@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Afruza | Professional Portfolio</title>
+    <title>Afruza | Mukammal Dunyo</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Playfair+Display:ital,wght@1,700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -15,14 +15,36 @@
             scroll-behavior: smooth;
         }
 
-        /* ORQA FONGA RASM JOYLASHTIRISH */
+        body { background-color: #fdfdfd; color: #333; }
+
+        /* NAVIGATSIYA */
+        nav {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 15px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        nav .logo { font-size: 22px; font-weight: bold; color: #ff4757; text-transform: uppercase; }
+        nav ul { display: flex; list-style: none; }
+        nav ul li { margin-left: 20px; }
+        nav ul li a { color: #2f3542; text-decoration: none; font-weight: 600; font-size: 13px; transition: 0.3s; }
+        nav ul li a:hover { color: #ff4757; }
+
+        /* HEADER */
         header {
             height: 100vh;
-            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
-                        url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
+                        url('https://images.unsplash.com/photo-1493612276216-ee3925520721?auto=format&fit=crop&w=1500&q=80');
             background-size: cover;
             background-position: center;
-            background-attachment: fixed; /* Parallaks effekti */
+            background-attachment: fixed;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -31,162 +53,199 @@
             text-align: center;
         }
 
-        nav {
-            background: rgba(0, 0, 0, 0.8);
-            padding: 20px 10%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: fixed;
+        .hero-h1 { font-family: 'Playfair Display', serif; font-size: 5rem; margin-bottom: 10px; }
+
+        /* BO'LIMLAR UCHUN UMUMIY STIL */
+        section { padding: 100px 8%; position: relative; }
+        .section-title { text-align: center; margin-bottom: 50px; font-size: 2.8rem; font-family: 'Playfair Display', serif; }
+
+        /* GALEREYA BO'LIMI (Orqa fonli) */
+        #gallery {
+            background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)),
+                        url('https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=1500&q=80');
+            background-size: cover;
+            background-attachment: fixed;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+
+        .gallery-item {
+            height: 300px;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .gallery-item img {
             width: 100%;
-            top: 0;
-            z-index: 1000;
+            height: 100%;
+            object-fit: cover;
+            transition: 0.5s;
         }
 
-        nav .logo { font-size: 24px; font-weight: bold; color: #00d2ff; }
-        nav ul { display: flex; list-style: none; }
-        nav ul li { margin-left: 20px; }
-        nav ul li a { color: white; text-decoration: none; transition: 0.3s; font-size: 14px; text-transform: uppercase; }
-        nav ul li a:hover { color: #00d2ff; }
+        .gallery-item:hover img { transform: scale(1.1) rotate(2deg); }
 
-        .hero-text h1 { font-size: 4rem; margin-bottom: 20px; letter-spacing: 5px; }
-        .hero-text p { font-size: 1.5rem; margin-bottom: 30px; color: #00d2ff; }
-
-        section { padding: 100px 10%; }
-        .section-title { text-align: center; margin-bottom: 60px; font-size: 2.5rem; position: relative; }
-        .section-title::after {
-            content: ''; width: 100px; height: 3px; background: #00d2ff;
-            position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%);
+        /* KITOBLAR BO'LIMI (To'q rangli orqa fon bilan) */
+        #books {
+            background: linear-gradient(rgba(44, 62, 80, 0.85), rgba(44, 62, 80, 0.85)),
+                        url('https://images.unsplash.com/photo-1507842217343-583bb7270b66?auto=format&fit=crop&w=1500&q=80');
+            background-size: cover;
+            color: white;
+            background-attachment: fixed;
         }
 
-        /* STATISTIKA BO'LIMI */
-        .stats { background: #00d2ff; color: white; display: flex; justify-content: space-around; text-align: center; padding: 50px 10%; }
-        .stat-item h2 { font-size: 3rem; }
-
-        /* PORTFOLIO GALEREYA */
-        .portfolio-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
-        .portfolio-item { position: relative; overflow: hidden; border-radius: 10px; height: 250px; }
-        .portfolio-item img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
-        .portfolio-item:hover img { transform: scale(1.1); }
-        .overlay {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 210, 255, 0.8); color: white;
-            display: flex; flex-direction: column; justify-content: center; align-items: center;
-            opacity: 0; transition: 0.5s;
+        .book-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+        }.book-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            border-radius: 20px;
+            width: 300px;
+            border: 1px solid rgba(255,255,255,0.2);
+            text-align: center;
         }
-        .portfolio-item:hover .overlay { opacity: 1; }
 
-        /* BLOG BO'LIMI */
-        .blog-container { display: flex; gap: 20px; flex-wrap: wrap; }
-        .blog-card { background: #f4f4f4; flex: 1; min-width: 300px; padding: 20px; border-radius: 10px; }
-        .blog-card h3 { margin-bottom: 10px; color: #333; }
+        .book-card i { font-size: 3rem; margin-bottom: 20px; color: #ff4757; }
 
-        /* BOG'LANISH */
-        .contact-flex { display: flex; gap: 50px; }
-        .contact-info, .contact-form { flex: 1; }
-        input, textarea { width: 100%; padding: 15px; margin-bottom: 20px; border: 1px solid #ccc; border-radius: 5px; }
-        .btn-submit { background: #00d2ff; color: white; border: none; padding: 15px 30px; cursor: pointer; font-weight: bold; }footer { background: #111; color: white; text-align: center; padding: 50px; }
-        .socials a { color: white; font-size: 25px; margin: 0 10px; }
+        /* QIZIQISHLAR BO'LIMI */
+        #hobbies {
+            background: linear-gradient(rgba(255, 71, 87, 0.1), rgba(255, 71, 87, 0.1)),
+                        url('https://images.unsplash.com/photo-1502404642581-79b004ea137e?auto=format&fit=crop&w=1500&q=80');
+            background-size: cover;
+            background-attachment: fixed;
+        }
+
+        .hobby-flex {
+            display: flex;
+            gap: 20px;
+            overflow-x: auto;
+            padding: 20px 0;
+        }
+
+        .hobby-box {
+            min-width: 250px;
+            background: white;
+            padding: 40px;
+            border-radius: 50% 50% 0 0;
+            text-align: center;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.05);
+            transition: 0.3s;
+        }
+
+        .hobby-box:hover { background: #ff4757; color: white; }
+
+        /* FOOTER */
+        footer {
+            background: #1e272e;
+            color: white;
+            padding: 60px 8%;
+            text-align: center;
+        }
+
+        .socials a { color: white; font-size: 25px; margin: 0 15px; transition: 0.3s; }
+        .socials a:hover { color: #ff4757; }
 
         @media (max-width: 768px) {
-            .hero-text h1 { font-size: 2.5rem; }
-            .contact-flex { flex-direction: column; }
+            .hero-h1 { font-size: 3rem; }
+            nav ul { display: none; }
         }
     </style>
 </head>
 <body>
 
     <nav>
-        <div class="logo">AFRUZA</div>
+        <div class="logo">Afruza World</div>
         <ul>
             <li><a href="#home">Asosiy</a></li>
-            <li><a href="#about">Men haqimda</a></li>
-            <li><a href="#portfolio">Portfolio</a></li>
-            <li><a href="#blog">Blog</a></li>
+            <li><a href="#gallery">Galereya</a></li>
+            <li><a href="#books">Kitoblar</a></li>
+            <li><a href="#hobbies">Qiziqishlar</a></li>
             <li><a href="#contact">Aloqa</a></li>
         </ul>
     </nav>
 
     <header id="home">
-        <div class="hero-text">
-            <h1>AFRUZA AXMONOVA</h1>
-            <p>WEB DEVELOPER & DIGITAL DESIGNER</p>
-            <a href="#portfolio" class="btn-submit" style="text-decoration: none;">ISHlarimni ko'ring</a>
-        </div>
+        <p style="letter-spacing: 3px; font-weight: bold;">XUSH KELIBSIZ</p>
+        <h1 class="hero-h1">Mening Dunyoim</h1>
+        <div style="width: 50px; height: 3px; background: #ff4757; margin: 20px 0;"></div>
+        <p>Ijod, Ilm va Qiziqishlar uyg'unligi</p>
     </header>
 
-    <section id="about">
-        <h2 class="section-title">Men haqimda</h2>
-        <p style="text-align: center; max-width: 800px; margin: 0 auto; font-size: 1.1rem; color: #666;">
-            Men 2026-yilning eng zamonaviy texnologiyalari bilan ishlovchi dasturchiman. 
-            Mening maqsadim nafaqat kod yozish, balki insonlar hayotini osonlashtiradigan raqamli ekotizimlar yaratishdir.
-        </p>
+    <section id="gallery">
+        <h2 class="section-title">Foto Galereya</h2>
+        <div class="gallery-grid">
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1497032628192-86f99bcd76bc?auto=format&fit=crop&w=500&q=60" alt=""></div>
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&w=500&q=60" alt=""></div>
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1488190211105-8b0e65b80b4e?auto=format&fit=crop&w=500&q=60" alt=""></div>
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=500&q=60" alt=""></div>
+        </div>
     </section>
 
-    <div class="stats">
-        <div class="stat-item"><h2>50+</h2><p>Loyihalar</p></div>
-        <div class="stat-item"><h2>30+</h2><p>Mijozlar</p></div>
-        <div class="stat-item"><h2>5+</h2><p>Yillik tajriba</p></div>
-    </div>
-
-    <section id="portfolio">
-        <h2 class="section-title">Portfolio</h2>
-        <div class="portfolio-grid">
-            <div class="portfolio-item">
-                <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=500&q=60" alt="">
-                <div class="overlay"><h3>Veb Dizayn</h3><p>Landing Page yaratish</p></div>
+    <section id="books">
+        <h2 class="section-title" style="color: white;">Sevimli Kitoblarim</h2>
+        <div class="book-list">
+            <div class="book-card">
+                <i class="fas fa-book-open"></i>
+                <h3>Badiiy Asarlar</h3>
+                <p>Jahon adabiyotining eng sara durdonalari va sarguzashtlar.</p>
             </div>
-            <div class="portfolio-item">
-                <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=500&q=60" alt="">
-                <div class="overlay"><h3>Dasturlash</h3><p>Sloja ilovalar</p></div>
+            <div class="book-card">
+                <i class="fas fa-brain"></i>
+                <h3>Psixologiya</h3>
+                <p>Shaxsiy rivojlanish va inson ongini o'rganuvchi kitoblar.</p>
             </div>
-            <div class="portfolio-item">
-                <img src="https://images.unsplash.com/photo-1551288049-bbbda536339a?auto=format&fit=crop&w=500&q=60" alt="">
-                <div class="overlay"><h3>Grafika</h3><p>Logo va Brending</p></div>
+            <div class="book-card">
+                <i class="fas fa-code"></i>
+                <h3>IT Adabiyotlari</h3>
+                <p>Dasturlash va yangi texnologiyalar bo'yicha qo'llanmalar.</p>
+            </div>
+        </div>
+    </section><section id="hobbies">
+        <h2 class="section-title">Mening Qiziqishlarim</h2>
+        <div class="hobby-flex">
+            <div class="hobby-box">
+                <i class="fas fa-camera" style="font-size: 2rem; margin-bottom: 10px;"></i>
+                <h4>Fotosurat</h4>
+            </div>
+            <div class="hobby-box">
+                <i class="fas fa-plane" style="font-size: 2rem; margin-bottom: 10px;"></i>
+                <h4>Sayohat</h4>
+            </div>
+            <div class="hobby-box">
+                <i class="fas fa-music" style="font-size: 2rem; margin-bottom: 10px;"></i>
+                <h4>Musiqa</h4>
+            </div>
+            <div class="hobby-box">
+                <i class="fas fa-chess" style="font-size: 2rem; margin-bottom: 10px;"></i>
+                <h4>Shaxmat</h4>
             </div>
         </div>
     </section>
 
-    <section id="blog" style="background: #fff;">
-        <h2 class="section-title">Oxirgi Maqolalar</h2>
-        <div class="blog-container">
-            <div class="blog-card">
-                <h3>Veb 3.0 Kelajagi</h3>
-                <p>Internetning yangi davri qanday bo'ladi va bizni nimalar kutyapti?</p>
-                <br><a href="#" style="color: #00d2ff;">O'qish →</a>
-            </div>
-            <div class="blog-card">
-                <h3>Sun'iy Intellekt</h3>
-                <p>Dizaynerlar ishini AI qanday o'zgartirmoqda?</p>
-                <br><a href="#" style="color: #00d2ff;">O'qish →</a>
-            </div>
-        </div>
-    </section>
-
-    <section id="contact">
+    <section id="contact" style="text-align: center; background: #fff;">
         <h2 class="section-title">Bog'lanish</h2>
-        <div class="contact-flex">
-            <div class="contact-info">
-                <h3>Men bilan bog'laning</h3>
-                <p><i class="fas fa-envelope"></i> afruza@example.com</p>
-                <p><i class="fas fa-phone"></i> +998 90 123 45 67</p>
-                <div class="socials" style="margin-top: 20px; text-align: left;">
-                    <a href="#" style="color: #333;"><i class="fab fa-telegram"></i></a>
-                    <a href="#" style="color: #333;"><i class="fab fa-instagram"></i></a></div>
-            </div>
-            <div class="contact-form">
-                <form>
-                    <input type="text" placeholder="Ismingiz" required>
-                    <input type="email" placeholder="Emailingiz" required>
-                    <textarea rows="5" placeholder="Xabaringiz"></textarea>
-                    <button type="submit" class="btn-submit">YUBORISH</button>
-                </form>
-            </div>
+        <p>Siz bilan muloqot qilishdan mamnun bo'laman!</p>
+        <br>
+        <div class="socials">
+            <a href="#" style="color: #0088cc;"><i class="fab fa-telegram"></i></a>
+            <a href="#" style="color: #e4405f;"><i class="fab fa-instagram"></i></a>
+            <a href="#" style="color: #333;"><i class="fab fa-github"></i></a>
         </div>
     </section>
 
     <footer>
-        <p>&copy; 2026 Afruza Axmonova. Barcha huquqlar himoyalangan.</p>
+        <h2 style="font-family: 'Playfair Display', serif; font-size: 2rem; margin-bottom: 20px;">Afruza</h2>
+        <p>Har bir kun — yangi sahifa.</p>
+        <br>
+        <p style="font-size: 12px; opacity: 0.5;">&copy; 2026 Barcha huquqlar himoyalangan.</p>
     </footer>
 
 </body>
