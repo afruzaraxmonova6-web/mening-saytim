@@ -226,6 +226,69 @@
             <a href="#" style="color:white; margin: 0 10px;"><i class="fab fa-telegram"></i></a>
             <a href="#" style="color:white; margin: 0 10px;"><i class="fab fa-instagram"></i></a>
         </div>
+
+        <section id="ai-model" style="background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1518717758536-85ae29035b6d?auto=format&fit=crop&w=1500&q=80'); background-size: cover; padding: 100px 10%; color: white; text-align: center;">
+    <div style="background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); padding: 40px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.2);">
+        <h2 style="font-family: 'Playfair Display', serif; font-size: 2.5rem; margin-bottom: 20px;">AI Otlarni Tanish Modeli</h2>
+        <p style="margin-bottom: 30px;">Veb-kamerani yoqing va model otlarni qanday tanishini jonli ko'ring!</p>
+        
+        <button type="button" onclick="init()" style="background: #f39c12; color: white; border: none; padding: 15px 40px; font-weight: bold; border-radius: 30px; cursor: pointer; transition: 0.3s; margin-bottom: 20px;">
+            <i class="fas fa-video"></i> Modelni Ishga Tushirish
+        </button>
+
+        <div id="webcam-container" style="margin: 20px auto; border: 5px solid #fff; border-radius: 15px; width: fit-content; overflow: hidden; background: #000;"></div>
+        <div id="label-container" style="font-size: 1.5rem; font-weight: bold; color: #f39c12;"></div>
+    </div>
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest/dist/teachablemachine-image.min.js"></script>
+<script type="text/javascript">
+    // Model havolasi
+    const URL = "https://teachablemachine.withgoogle.com/models/6VmBEHEsL/";
+
+    let model, webcam, labelContainer, maxPredictions;
+
+    // Modelni yuklash va kamerani sozlash
+    async function init() {
+        const modelURL = URL + "model.json";
+        const metadataURL = URL + "metadata.json";
+
+        // Modelni yuklash
+        model = await tmImage.load(modelURL, metadataURL);
+        maxPredictions = model.getTotalClasses();
+
+        // Veb-kamerani sozlash
+        const flip = true; 
+        webcam = new tmImage.Webcam(400, 400, flip); 
+        await webcam.setup(); 
+        await webcam.play();
+        window.requestAnimationFrame(loop);
+
+        // Elementlarni DOM-ga qo'shish
+        document.getElementById("webcam-container").appendChild(webcam.canvas);
+        labelContainer = document.getElementById("label-container");
+        for (let i = 0; i < maxPredictions; i++) {
+            labelContainer.appendChild(document.createElement("div"));
+        }
+    }
+
+    async function loop() {
+        webcam.update(); 
+        await predict();
+        window.requestAnimationFrame(loop);
+    }
+
+    // Bashorat qilish
+    async function predict() {
+        const prediction = await model.predict(webcam.canvas);
+        for (let i = 0; i < maxPredictions; i++) {
+            const classPrediction =
+                prediction[i].className + ": " + (prediction[i].probability * 100).toFixed(2) + "%";
+            labelContainer.childNodes[i].innerHTML = classPrediction;
+        }
+    }
+</script>
     </footer>
 
 </body>
