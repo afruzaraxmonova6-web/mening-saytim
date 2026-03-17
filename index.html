@@ -3,10 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Afruza | Shaxsiy Portfolio</title>
+    <title>Afruza | Mening Rangli Dunyoim</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        /* BU YERDA BARCHA DIZAYN KODLARI JAMLANGAN */
+        /* ASOSIY RANG VA STIL SOZLAMALARI */
+        :root {
+            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --secondary-gradient: linear-gradient(to right, #ff7e5f, #feb47b);
+            --dark-color: #2d3436;
+            --light-color: #ffffff;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -16,28 +23,28 @@
         }
 
         body {
-            background-color: #f0f2f5;
-            color: #333;
+            background-color: #f9f9f9;
+            color: var(--dark-color);
         }
 
-        /* Navigatsiya */
+        /* NAVBAR - RANGDOR VA DOIMIY TEPADA */
         nav {
-            background: #1a1a2e;
-            padding: 15px 5%;
+            background: var(--primary-gradient);
+            padding: 15px 10%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            position: fixed;
-            width: 100%;
+            position: sticky;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
         }
 
-        nav .logo {
-            color: #fff;
+        .logo {
+            color: white;
             font-size: 24px;
             font-weight: bold;
+            text-transform: uppercase;
             letter-spacing: 2px;
         }
 
@@ -46,204 +53,201 @@
             list-style: none;
         }
 
-        nav ul li {
-            margin-left: 20px;
-        }
+        nav ul li { margin-left: 20px; }
 
         nav ul li a {
-            color: #fff;
+            color: white;
             text-decoration: none;
-            font-size: 16px;
+            font-weight: 500;
             transition: 0.3s;
+            padding: 8px 15px;
+            border-radius: 20px;
         }
 
         nav ul li a:hover {
-            color: #00d2ff;
+            background: rgba(255, 255, 255, 0.2);
         }
 
-        /* Asosiy qism (Hero) */
-        header {
-            height: 100vh;
-            background: linear-gradient(45deg, #1a1a2e, #16213e);
+        /* GERO (ASOSIY) BO'LIM - YORQIN GRADIENT */
+        .hero {
+            height: 90vh;
+            background: var(--primary-gradient);
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
             color: white;
-            padding: 20px;
+            clip-path: polygon(0 0, 100% 0, 100% 85%, 0% 100%);
         }
 
-        header h1 {
+        .hero h1 {
             font-size: 4rem;
             margin-bottom: 10px;
-            animation: fadeIn 2s;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.3);
         }
 
-        header p {
+        .hero p {
             font-size: 1.5rem;
-            margin-bottom: 25px;
-            color: #bdc3c7;
+            margin-bottom: 30px;
+            opacity: 0.9;
         }
 
         .btn {
-            padding: 12px 30px;
-            background: #00d2ff;
+            background: var(--secondary-gradient);
             color: white;
+            padding: 15px 35px;
             text-decoration: none;
-            border-radius: 30px;
+            border-radius: 50px;
             font-weight: bold;
-            transition: 0.4s;
-            box-shadow: 0 4px 15px rgba(0, 210, 255, 0.4);
+            box-shadow: 0 5px 15px rgba(255, 126, 95, 0.4);
+            transition: 0.3s;
         }
 
-        .btn:hover {
-            background: #3a7bd5;
-            transform: scale(1.1);
-        }
+        .btn:hover { transform: scale(1.05); }
 
-        /* Bo'limlar uchun umumiy stil */
-        section {
-            padding: 100px 10%;
-        }
+        /* BO'LIMLAR UCHUN STIL */
+        section { padding: 100px 10%; }
 
-        .section-title {
+        .title {
             text-align: center;
             font-size: 2.5rem;
             margin-bottom: 50px;
-            position: relative;
+            color: #4834d4;
         }
 
-        .section-title::after {
-            content: '';
-            width: 80px;
-            height: 4px;
-            background: #00d2ff;
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-
-        /* Men haqimda */
-        .about-box {
+        /* MEN HAQIMDA - RANGDOR BLOK */
+        .about-container {
+            display: flex;
+            align-items: center;
+            gap: 50px;
             background: white;
             padding: 40px;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            text-align: center;
+            border-radius: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
         }
 
-        .skills-icons {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            margin-top: 30px;
-            font-size: 3rem;
-            color: #1a1a2e;
-        }
+        .about-info h3 { color: #eb4d4b; margin-bottom: 15px; }
 
-        /* Loyihalar */
-        .project-container {
+        /* XIZMATLAR BO'LIMI - RANGDOR KARTALAR */
+        .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 25px;
         }
 
         .card {
-            background: white;
-            padding: 25px;
-            border-radius: 15px;
+            padding: 40px;
+            text-align: center;
+            border-radius: 20px;
+            color: white;
             transition: 0.3s;
-            border-bottom: 5px solid #00d2ff;
-        }
+        }.card:nth-child(1) { background: #6ab04c; }
+        .card:nth-child(2) { background: #f0932b; }
+        .card:nth-child(3) { background: #eb4d4b; }
+        .card:nth-child(4) { background: #7ed6df; }
 
-        .card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
-        }footer {
-            background: #1a1a2e;
+        .card i { font-size: 3rem; margin-bottom: 20px; }
+
+        .card:hover { transform: translateY(-10px); }
+
+        /* BOG'LANISH */
+        .contact {
+            background: #2d3436;
             color: white;
             text-align: center;
-            padding: 50px;
         }
 
         .socials a {
             color: white;
-            font-size: 25px;
+            font-size: 30px;
             margin: 0 15px;
             transition: 0.3s;
         }
 
-        .socials a:hover {
-            color: #00d2ff;
+        .socials a:hover { color: #fab1a0; }
+
+        footer {
+            padding: 30px;
+            background: #1e272e;
+            color: white;
+            text-align: center;
+            font-size: 14px;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
+        /* MOBIL VERSIYA */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            nav ul { display: none; }
         }
     </style>
 </head>
 <body>
 
     <nav>
-        <div class="logo">AFRUZA</div>
+        <div class="logo">Afruza Sayti</div>
         <ul>
-            <li><a href="#home">Asosiy</a></li>
+            <li><a href="#home">Bosh sahifa</a></li>
             <li><a href="#about">Men haqimda</a></li>
-            <li><a href="#projects">Loyihalar</a></li>
+            <li><a href="#services">Xizmatlarim</a></li>
             <li><a href="#contact">Aloqa</a></li>
         </ul>
     </nav>
 
-    <header id="home">
+    <header class="hero" id="home">
         <h1>Xush kelibsiz!</h1>
-        <p>Veb-dasturchi va dizayner</p>
-        <a href="#projects" class="btn">Loyihalarimni ko'ring</a>
+        <p>Mening interaktiv va rangdor portfoliomga marhamat</p>
+        <a href="#about" class="btn">Tanishishni boshlash</a>
     </header>
 
     <section id="about">
-        <h2 class="section-title">Men haqimda</h2>
-        <div class="about-box">
-            <p>Assalomu alaykum! Ismim Afruza. Men zamonaviy va foydalanuvchilar uchun qulay veb-saytlar yaratishga qiziqaman. Har bir loyihaga ijodiy yondashaman.</p>
-            <div class="skills-icons">
-                <i class="fab fa-html5" title="HTML5"></i>
-                <i class="fab fa-css3-alt" title="CSS3"></i>
-                <i class="fab fa-js" title="JavaScript"></i>
-                <i class="fab fa-github" title="GitHub"></i>
+        <h2 class="title">Men haqimda</h2>
+        <div class="about-container">
+            <div class="about-info">
+                <h3>Salom! Men Afruza</h3>
+                <p>Men kreativlikni va texnologiyani yaxshi ko'raman. Mening saytim — bu nafaqat ma'lumot, balki mening dunyoqarashimning aksidir. Men hozirda yangi loyihalar ustida ishlayapman va doim o'rganishdaman.</p>
             </div>
         </div>
     </section>
 
-    <section id="projects" style="background: #e9ecef;">
-        <h2 class="section-title">Mening Loyihalarim</h2>
-        <div class="project-container">
+    <section id="services" style="background-color: #f1f2f6;">
+        <h2 class="title">Nimalar qila olaman?</h2>
+        <div class="grid">
             <div class="card">
-                <h3>Portfoli Sayt</h3>
-                <p>Ushbu sayt mening ilk professional ishim hisoblanadi.</p>
+                <i class="fas fa-laptop-code"></i>
+                <h3>Dasturlash</h3>
+                <p>Zamonaviy veb-saytlar yaratish.</p>
             </div>
             <div class="card">
-                <h3>Kreativ Dizayn</h3>
-                <p>Ranglar va shakllar uyg'unligi asosida yaratilgan interfeys.</p>
+                <i class="fas fa-palette"></i>
+                <h3>Dizayn</h3>
+                <p>Ranglar bilan chiroyli uyg'unlik.</p>
             </div>
             <div class="card">
-                <h3>Veb Ilova</h3>
-                <p>Foydalanuvchilar uchun qulay va tezkor interaktiv ilova.</p>
+                <i class="fas fa-rocket"></i>
+                <h3>Tezkorlik</h3>
+                <p>Sifatli va tezkor natijalar.</p>
+            </div>
+            <div class="card">
+                <i class="fas fa-mobile"></i>
+                <h3>Moslashuvchan</h3>
+                <p>Barcha qurilmalar uchun qulay.</p>
             </div>
         </div>
     </section>
 
-    <footer id="contact">
-        <h2>Men bilan bog'laning</h2>
-        <br>
+    <section id="contact" class="contact">
+        <h2 class="title" style="color: white;">Men bilan bog'lanish</h2>
+        <p style="margin-bottom: 30px;">Xabar yozish uchun ijtimoiy tarmoqlardan foydalaning:</p>
         <div class="socials">
             <a href="#"><i class="fab fa-telegram"></i></a>
             <a href="#"><i class="fab fa-instagram"></i></a>
             <a href="#"><i class="fab fa-github"></i></a>
         </div>
-        <br>
-        <p>&copy; 2026 Barcha huquqlar himoyalangan.</p>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Afruza Axmonova. Barcha loyihalar mualliflik huquqi bilan himoyalangan.</p>
     </footer>
 
 </body>
