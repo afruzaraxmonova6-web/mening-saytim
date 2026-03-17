@@ -3,78 +3,247 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mening Shaxsiy Saytim</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Afruza | Shaxsiy Portfolio</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* BU YERDA BARCHA DIZAYN KODLARI JAMLANGAN */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: #f0f2f5;
+            color: #333;
+        }
+
+        /* Navigatsiya */
+        nav {
+            background: #1a1a2e;
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        nav .logo {
+            color: #fff;
+            font-size: 24px;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 20px;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 16px;
+            transition: 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #00d2ff;
+        }
+
+        /* Asosiy qism (Hero) */
+        header {
+            height: 100vh;
+            background: linear-gradient(45deg, #1a1a2e, #16213e);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            padding: 20px;
+        }
+
+        header h1 {
+            font-size: 4rem;
+            margin-bottom: 10px;
+            animation: fadeIn 2s;
+        }
+
+        header p {
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+            color: #bdc3c7;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            background: #00d2ff;
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            transition: 0.4s;
+            box-shadow: 0 4px 15px rgba(0, 210, 255, 0.4);
+        }
+
+        .btn:hover {
+            background: #3a7bd5;
+            transform: scale(1.1);
+        }
+
+        /* Bo'limlar uchun umumiy stil */
+        section {
+            padding: 100px 10%;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            width: 80px;
+            height: 4px;
+            background: #00d2ff;
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        /* Men haqimda */
+        .about-box {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .skills-icons {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 30px;
+            font-size: 3rem;
+            color: #1a1a2e;
+        }
+
+        /* Loyihalar */
+        .project-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            transition: 0.3s;
+            border-bottom: 5px solid #00d2ff;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        }footer {
+            background: #1a1a2e;
+            color: white;
+            text-align: center;
+            padding: 50px;
+        }
+
+        .socials a {
+            color: white;
+            font-size: 25px;
+            margin: 0 15px;
+            transition: 0.3s;
+        }
+
+        .socials a:hover {
+            color: #00d2ff;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
 </head>
 <body>
 
     <nav>
-        <div class="logo">MeningSaytim</div>
+        <div class="logo">AFRUZA</div>
         <ul>
             <li><a href="#home">Asosiy</a></li>
             <li><a href="#about">Men haqimda</a></li>
             <li><a href="#projects">Loyihalar</a></li>
-            <li><a href="#contact">Bog'lanish</a></li>
+            <li><a href="#contact">Aloqa</a></li>
         </ul>
     </nav>
 
     <header id="home">
-        <div class="header-content">
-            <h1>Xush kelibsiz!</h1>
-            <p>Men dasturchi va kreativ g'oyalar muallifiman.</p>
-            <a href="#projects" class="btn">Ishlarimni ko'rish</a>
-        </div>
+        <h1>Xush kelibsiz!</h1>
+        <p>Veb-dasturchi va dizayner</p>
+        <a href="#projects" class="btn">Loyihalarimni ko'ring</a>
     </header>
 
-    <section id="about" class="container">
+    <section id="about">
         <h2 class="section-title">Men haqimda</h2>
-        <div class="about-flex">
-            <div class="about-text">
-                <p>Assalomu alaykum! Mening ismim Afruza. Men veb-texnologiyalar va dasturlashga qiziqaman. Ushbu sayt orqali o'z tajribam va loyihalarim bilan o'rtoqlashaman.</p>
-                <ul class="skills">
-                    <li><i class="fab fa-html5"></i> HTML</li>
-                    <li><i class="fab fa-css3-alt"></i> CSS</li>
-                    <li><i class="fab fa-js"></i> JavaScript</li>
-                    <li><i class="fab fa-github"></i> GitHub</li>
-                </ul>
+        <div class="about-box">
+            <p>Assalomu alaykum! Ismim Afruza. Men zamonaviy va foydalanuvchilar uchun qulay veb-saytlar yaratishga qiziqaman. Har bir loyihaga ijodiy yondashaman.</p>
+            <div class="skills-icons">
+                <i class="fab fa-html5" title="HTML5"></i>
+                <i class="fab fa-css3-alt" title="CSS3"></i>
+                <i class="fab fa-js" title="JavaScript"></i>
+                <i class="fab fa-github" title="GitHub"></i>
             </div>
         </div>
     </section>
 
-    <section id="projects" class="bg-light">
-        <div class="container">
-            <h2 class="section-title">Mening Loyihalarim</h2>
-            <div class="project-grid">
-                <div class="project-card">
-                    <h3>Loyiha 1</h3>
-                    <p>Bu yerga loyihangiz haqida qisqacha ma'lumot yozishingiz mumkin.</p>
-                    <a href="#" class="more-link">Batafsil...</a>
-                </div>
-                <div class="project-card">
-                    <h3>Loyiha 2</h3>
-                    <p>Ikkinchi loyihangiz tavsifi va uning asosiy funksiyalari haqida.</p>
-                    <a href="#" class="more-link">Batafsil...</a>
-                </div>
-                <div class="project-card">
-                    <h3>Loyiha 3</h3>
-                    <p>Uchinchi loyihangiz va qo'shimcha ma'lumotlar bu yerda bo'ladi.</p>
-                    <a href="#" class="more-link">Batafsil...</a>
-                </div>
+    <section id="projects" style="background: #e9ecef;">
+        <h2 class="section-title">Mening Loyihalarim</h2>
+        <div class="project-container">
+            <div class="card">
+                <h3>Portfoli Sayt</h3>
+                <p>Ushbu sayt mening ilk professional ishim hisoblanadi.</p>
+            </div>
+            <div class="card">
+                <h3>Kreativ Dizayn</h3>
+                <p>Ranglar va shakllar uyg'unligi asosida yaratilgan interfeys.</p>
+            </div>
+            <div class="card">
+                <h3>Veb Ilova</h3>
+                <p>Foydalanuvchilar uchun qulay va tezkor interaktiv ilova.</p>
             </div>
         </div>
     </section>
 
     <footer id="contact">
-        <div class="container">
-            <h2>Men bilan bog'laning</h2>
-            <div class="social-links">
-                <a href="#"><i class="fab fa-telegram"></i></a>
-                <a href="#"><i class="fab fa-instagram"></i></a>
-                <a href="#"><i class="fab fa-github"></i></a>
-            </div>
-            <p>&copy; 2026 Barcha huquqlar himoyalangan.</p>
+        <h2>Men bilan bog'laning</h2>
+        <br>
+        <div class="socials">
+            <a href="#"><i class="fab fa-telegram"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-github"></i></a>
         </div>
+        <br>
+        <p>&copy; 2026 Barcha huquqlar himoyalangan.</p>
     </footer>
 
 </body>
