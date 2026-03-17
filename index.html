@@ -3,158 +3,107 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Afruza | Mukammal Dunyo</title>
+    <title>Afruza | Mukammal Portfolio</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Playfair+Display:ital,wght@1,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Montserrat', sans-serif;
-            scroll-behavior: smooth;
-        }
-
-        body { background-color: #fdfdfd; color: #333; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Montserrat', sans-serif; scroll-behavior: smooth; }
 
         /* NAVIGATSIYA */
         nav {
-            background: rgba(255, 255, 255, 0.95);
-            padding: 15px 8%;
+            background: rgba(0, 0, 0, 0.85);
+            padding: 15px 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
             position: fixed;
             width: 100%;
             top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            z-index: 2000;
         }
-
-        nav .logo { font-size: 22px; font-weight: bold; color: #ff4757; text-transform: uppercase; }
+        nav .logo { font-size: 20px; font-weight: bold; color: #fff; border: 2px solid #fff; padding: 5px 15px; }
         nav ul { display: flex; list-style: none; }
         nav ul li { margin-left: 20px; }
-        nav ul li a { color: #2f3542; text-decoration: none; font-weight: 600; font-size: 13px; transition: 0.3s; }
-        nav ul li a:hover { color: #ff4757; }
+        nav ul li a { color: white; text-decoration: none; font-size: 12px; font-weight: bold; text-transform: uppercase; transition: 0.3s; }
+        nav ul li a:hover { color: #f39c12; }
 
-        /* HEADER */
-        header {
-            height: 100vh;
-            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
-                        url('https://images.unsplash.com/photo-1493612276216-ee3925520721?auto=format&fit=crop&w=1500&q=80');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
+        /* UMUMIY BO'LIMLAR UCHUN STIL */
+        section {
+            min-height: 80vh;
+            padding: 100px 10%;
             display: flex;
             flex-direction: column;
             justify-content: center;
-            align-items: center;
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
             color: white;
             text-align: center;
         }
-
-        .hero-h1 { font-family: 'Playfair Display', serif; font-size: 5rem; margin-bottom: 10px; }
-
-        /* BO'LIMLAR UCHUN UMUMIY STIL */
-        section { padding: 100px 8%; position: relative; }
-        .section-title { text-align: center; margin-bottom: 50px; font-size: 2.8rem; font-family: 'Playfair Display', serif; }
-
-        /* GALEREYA BO'LIMI (Orqa fonli) */
-        #gallery {
-            background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)),
-                        url('https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=1500&q=80');
-            background-size: cover;
-            background-attachment: fixed;
-        }
-
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 15px;
-        }
-
-        .gallery-item {
-            height: 300px;
-            overflow: hidden;
+        .overlay-box {
+            background: rgba(0, 0, 0, 0.6);
+            padding: 50px;
             border-radius: 15px;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            backdrop-filter: blur(5px);
         }
+        .section-title { font-family: 'Playfair Display', serif; font-size: 3rem; margin-bottom: 30px; text-transform: uppercase; }
 
-        .gallery-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: 0.5s;
+        /* 1. ASOSIY BO'LIM */
+        #home {
+            height: 100vh;
+            background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&w=1500&q=80');
         }
+        .hero-text h1 { font-size: 5rem; letter-spacing: 10px; }
 
-        .gallery-item:hover img { transform: scale(1.1) rotate(2deg); }
+        /* 2. STATISTIKA */
+        #stats {
+            background-image: url('https://images.unsplash.com/photo-1551288049-bbbda536339a?auto=format&fit=crop&w=1500&q=80');
+        }
+        .stats-grid { display: flex; justify-content: space-around; flex-wrap: wrap; gap: 20px; }
+        .stat-card { background: rgba(243, 156, 18, 0.8); padding: 30px; border-radius: 10px; min-width: 200px; }
 
-        /* KITOBLAR BO'LIMI (To'q rangli orqa fon bilan) */
+        /* 3. MAQOLALAR */
+        #articles {
+            background-image: url('https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=1500&q=80');
+        }
+        .grid-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+        .glass-card { background: rgba(255, 255, 255, 0.1); padding: 25px; border: 1px solid rgba(255,255,255,0.2); border-radius: 15px; }
+
+        /* 4. KITOBLAR */
         #books {
-            background: linear-gradient(rgba(44, 62, 80, 0.85), rgba(44, 62, 80, 0.85)),
-                        url('https://images.unsplash.com/photo-1507842217343-583bb7270b66?auto=format&fit=crop&w=1500&q=80');
-            background-size: cover;
-            color: white;
-            background-attachment: fixed;
+            background-image: url('https://images.unsplash.com/photo-1507842217343-583bb7270b66?auto=format&fit=crop&w=1500&q=80');
         }
 
-        .book-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 30px;
-            justify-content: center;
-        }.book-card {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            padding: 30px;
-            border-radius: 20px;
-            width: 300px;
-            border: 1px solid rgba(255,255,255,0.2);
-            text-align: center;
+        /* 5. MIJOZLAR FIKRI */
+        #testimonials {
+            background-image: url('https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1500&q=80');
         }
+        .testimonial-box { font-style: italic; font-size: 1.2rem; }
 
-        .book-card i { font-size: 3rem; margin-bottom: 20px; color: #ff4757; }
+        /* 6. BLOG & YANGILIKLAR */
+        #blog {
+            background-image: url('https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?auto=format&fit=crop&w=1500&q=80');
+        }/* 7. GALEREYA */
+        #gallery {
+            background-image: url('https://images.unsplash.com/photo-1500628539600-e042f3e16bb6?auto=format&fit=crop&w=1500&q=80');
+        }
+        .gallery-img { width: 100%; height: 200px; object-fit: cover; border-radius: 10px; transition: 0.3s; }
+        .gallery-img:hover { transform: scale(1.05); }
 
-        /* QIZIQISHLAR BO'LIMI */
+        /* 8. QIZIQISHLAR */
         #hobbies {
-            background: linear-gradient(rgba(255, 71, 87, 0.1), rgba(255, 71, 87, 0.1)),
-                        url('https://images.unsplash.com/photo-1502404642581-79b004ea137e?auto=format&fit=crop&w=1500&q=80');
-            background-size: cover;
-            background-attachment: fixed;
+            background-image: url('https://images.unsplash.com/photo-1502404642581-79b004ea137e?auto=format&fit=crop&w=1500&q=80');
         }
 
-        .hobby-flex {
-            display: flex;
-            gap: 20px;
-            overflow-x: auto;
-            padding: 20px 0;
+        /* 9. ALOQA */
+        #contact {
+            background-image: url('https://images.unsplash.com/photo-1423666639041-f56000c27a9a?auto=format&fit=crop&w=1500&q=80');
         }
 
-        .hobby-box {
-            min-width: 250px;
-            background: white;
-            padding: 40px;
-            border-radius: 50% 50% 0 0;
-            text-align: center;
-            box-shadow: 0 15px 30px rgba(0,0,0,0.05);
-            transition: 0.3s;
-        }
-
-        .hobby-box:hover { background: #ff4757; color: white; }
-
-        /* FOOTER */
-        footer {
-            background: #1e272e;
-            color: white;
-            padding: 60px 8%;
-            text-align: center;
-        }
-
-        .socials a { color: white; font-size: 25px; margin: 0 15px; transition: 0.3s; }
-        .socials a:hover { color: #ff4757; }
+        footer { background: #000; color: white; text-align: center; padding: 40px; }
 
         @media (max-width: 768px) {
-            .hero-h1 { font-size: 3rem; }
+            .hero-text h1 { font-size: 2.5rem; }
             nav ul { display: none; }
         }
     </style>
@@ -162,90 +111,121 @@
 <body>
 
     <nav>
-        <div class="logo">Afruza World</div>
+        <div class="logo">AFRUZA</div>
         <ul>
             <li><a href="#home">Asosiy</a></li>
-            <li><a href="#gallery">Galereya</a></li>
+            <li><a href="#stats">Statistika</a></li>
+            <li><a href="#articles">Maqolalar</a></li>
             <li><a href="#books">Kitoblar</a></li>
+            <li><a href="#testimonials">Fikrlar</a></li>
+            <li><a href="#blog">Blog</a></li>
+            <li><a href="#gallery">Galereya</a></li>
             <li><a href="#hobbies">Qiziqishlar</a></li>
             <li><a href="#contact">Aloqa</a></li>
         </ul>
     </nav>
 
     <header id="home">
-        <p style="letter-spacing: 3px; font-weight: bold;">XUSH KELIBSIZ</p>
-        <h1 class="hero-h1">Mening Dunyoim</h1>
-        <div style="width: 50px; height: 3px; background: #ff4757; margin: 20px 0;"></div>
-        <p>Ijod, Ilm va Qiziqishlar uyg'unligi</p>
+        <div class="hero-text">
+            <h1 class="section-title">AFRUZA</h1>
+            <p>Mening Mukammal Portfoliomga Xush Kelibsiz</p>
+        </div>
     </header>
 
-    <section id="gallery">
-        <h2 class="section-title">Foto Galereya</h2>
-        <div class="gallery-grid">
-            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1497032628192-86f99bcd76bc?auto=format&fit=crop&w=500&q=60" alt=""></div>
-            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&w=500&q=60" alt=""></div>
-            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1488190211105-8b0e65b80b4e?auto=format&fit=crop&w=500&q=60" alt=""></div>
-            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=500&q=60" alt=""></div>
+    <section id="stats">
+        <div class="overlay-box">
+            <h2 class="section-title">Natijalar</h2>
+            <div class="stats-grid">
+                <div class="stat-card"><h2>120+</h2><p>Loyihalar</p></div>
+                <div class="stat-card"><h2>85+</h2><p>Mijozlar</p></div>
+                <div class="stat-card"><h2>1000+</h2><p>Kitob sahifalari</p></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="articles">
+        <div class="overlay-box">
+            <h2 class="section-title">Maqolalarim</h2>
+            <div class="grid-container">
+                <div class="glass-card"><h3>Texnologiya</h3><p>Veb-saytlar kelajagi va AI haqida maqola.</p></div>
+                <div class="glass-card"><h3>Ta'lim</h3><p>Zamonaviy o'rganish metodikasi bo'yicha tahlillar.</p></div>
+                <div class="glass-card"><h3>Ijod</h3><p>Kreativ fikrlashni rivojlantirish yo'llari.</p></div>
+            </div>
         </div>
     </section>
 
     <section id="books">
-        <h2 class="section-title" style="color: white;">Sevimli Kitoblarim</h2>
-        <div class="book-list">
-            <div class="book-card">
-                <i class="fas fa-book-open"></i>
-                <h3>Badiiy Asarlar</h3>
-                <p>Jahon adabiyotining eng sara durdonalari va sarguzashtlar.</p>
-            </div>
-            <div class="book-card">
-                <i class="fas fa-brain"></i>
-                <h3>Psixologiya</h3>
-                <p>Shaxsiy rivojlanish va inson ongini o'rganuvchi kitoblar.</p>
-            </div>
-            <div class="book-card">
-                <i class="fas fa-code"></i>
-                <h3>IT Adabiyotlari</h3>
-                <p>Dasturlash va yangi texnologiyalar bo'yicha qo'llanmalar.</p>
-            </div>
-        </div>
-    </section><section id="hobbies">
-        <h2 class="section-title">Mening Qiziqishlarim</h2>
-        <div class="hobby-flex">
-            <div class="hobby-box">
-                <i class="fas fa-camera" style="font-size: 2rem; margin-bottom: 10px;"></i>
-                <h4>Fotosurat</h4>
-            </div>
-            <div class="hobby-box">
-                <i class="fas fa-plane" style="font-size: 2rem; margin-bottom: 10px;"></i>
-                <h4>Sayohat</h4>
-            </div>
-            <div class="hobby-box">
-                <i class="fas fa-music" style="font-size: 2rem; margin-bottom: 10px;"></i>
-                <h4>Musiqa</h4>
-            </div>
-            <div class="hobby-box">
-                <i class="fas fa-chess" style="font-size: 2rem; margin-bottom: 10px;"></i>
-                <h4>Shaxmat</h4>
+        <div class="overlay-box">
+            <h2 class="section-title">Kutubxonam</h2>
+            <p>Sevimli kitoblarim ro'yxati va ulardan olingan xulosalar.</p>
+            <br>
+            <div class="grid-container">
+                <div class="glass-card"><h4>"Ufq"</h4><p>Said Ahmad</p></div>
+                <div class="glass-card"><h4>"Atomic Habits"</h4><p>James Clear</p></div>
             </div>
         </div>
     </section>
 
-    <section id="contact" style="text-align: center; background: #fff;">
-        <h2 class="section-title">Bog'lanish</h2>
-        <p>Siz bilan muloqot qilishdan mamnun bo'laman!</p>
-        <br>
-        <div class="socials">
-            <a href="#" style="color: #0088cc;"><i class="fab fa-telegram"></i></a>
-            <a href="#" style="color: #e4405f;"><i class="fab fa-instagram"></i></a>
-            <a href="#" style="color: #333;"><i class="fab fa-github"></i></a>
+    <section id="testimonials">
+        <div class="overlay-box">
+            <h2 class="section-title">Mijozlar Fikri</h2>
+            <div class="testimonial-box">
+                <p>"Afruza bilan ishlash juda maroqli! Sayt dizayni va ishlash tezligi a'lo darajada."</p>
+                <br><b>- Akmal Ismoilov</b>
+            </div>
+        </div>
+    </section>
+
+    <section id="blog">
+        <div class="overlay-box">
+            <h2 class="section-title">Blog & Yangiliklar</h2>
+            <div class="grid-container">
+                <div class="glass-card"><h5>Yangilik #1</h5><p>Dasturlash olamidagi oxirgi o'zgarishlar.</p></div>
+                <div class="glass-card"><h5>Yangilik #2</h5><p>Yangi loyiha start oldi!</p></div>
+            </div>
+        </div>
+    </section><section id="gallery">
+        <div class="overlay-box">
+            <h2 class="section-title">Galereya</h2>
+            <div class="grid-container">
+                <img src="https://images.unsplash.com/photo-1493612276216-ee3925520721?auto=format&fit=crop&w=500&q=60" class="gallery-img">
+                <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=500&q=60" class="gallery-img">
+                <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=500&q=60" class="gallery-img">
+            </div>
+        </div>
+    </section>
+
+    <section id="hobbies">
+        <div class="overlay-box">
+            <h2 class="section-title">Qiziqishlarim</h2>
+            <div class="stats-grid">
+                <div><i class="fas fa-camera fa-2x"></i><p>Foto</p></div>
+                <div><i class="fas fa-plane fa-2x"></i><p>Sayohat</p></div>
+                <div><i class="fas fa-chess fa-2x"></i><p>Shaxmat</p></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="overlay-box">
+            <h2 class="section-title">Aloqa</h2>
+            <p>Telegram: @afruza_axmonova</p>
+            <p>Instagram: @afruza_dev</p>
+            <br>
+            <form style="max-width: 400px; margin: 0 auto;">
+                <input type="text" placeholder="Ismingiz" style="width:100%; padding:10px; margin-bottom:10px;">
+                <textarea placeholder="Xabar" style="width:100%; padding:10px; margin-bottom:10px;"></textarea>
+                <button type="button" style="background:#f39c12; color:white; border:none; padding:10px 20px; cursor:pointer;">Yuborish</button>
+            </form>
         </div>
     </section>
 
     <footer>
-        <h2 style="font-family: 'Playfair Display', serif; font-size: 2rem; margin-bottom: 20px;">Afruza</h2>
-        <p>Har bir kun — yangi sahifa.</p>
-        <br>
-        <p style="font-size: 12px; opacity: 0.5;">&copy; 2026 Barcha huquqlar himoyalangan.</p>
+        <p>&copy; 2026 Afruza Axmonova. Barcha huquqlar himoyalangan.</p>
+        <div style="margin-top: 20px;">
+            <a href="#" style="color:white; margin: 0 10px;"><i class="fab fa-telegram"></i></a>
+            <a href="#" style="color:white; margin: 0 10px;"><i class="fab fa-instagram"></i></a>
+        </div>
     </footer>
 
 </body>
