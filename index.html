@@ -1,17 +1,18 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="uz">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Afruza | Mukammal Portfolio</title>
+    <title>Afruza | Mukammal Dunyo va AI</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Montserrat', sans-serif; scroll-behavior: smooth; }
 
         /* NAVIGATSIYA */
         nav {
-            background: rgba(0, 0, 0, 0.85);
+            background: rgba(0, 0, 0, 0.9);
             padding: 15px 5%;
             display: flex;
             justify-content: space-between;
@@ -21,15 +22,15 @@
             top: 0;
             z-index: 2000;
         }
-        nav .logo { font-size: 20px; font-weight: bold; color: #fff; border: 2px solid #fff; padding: 5px 15px; }
+        nav .logo { font-size: 22px; font-weight: bold; color: #f39c12; letter-spacing: 2px; }
         nav ul { display: flex; list-style: none; }
-        nav ul li { margin-left: 20px; }
-        nav ul li a { color: white; text-decoration: none; font-size: 12px; font-weight: bold; text-transform: uppercase; transition: 0.3s; }
+        nav ul li { margin-left: 15px; }
+        nav ul li a { color: white; text-decoration: none; font-size: 11px; font-weight: bold; text-transform: uppercase; transition: 0.3s; }
         nav ul li a:hover { color: #f39c12; }
 
-        /* UMUMIY BO'LIMLAR UCHUN STIL */
+        /* UMUMIY BO'LIM STILI */
         section {
-            min-height: 80vh;
+            min-height: 100vh;
             padding: 100px 10%;
             display: flex;
             flex-direction: column;
@@ -41,115 +42,64 @@
             text-align: center;
         }
         .overlay-box {
-            background: rgba(0, 0, 0, 0.6);
-            padding: 50px;
-            border-radius: 15px;
-            backdrop-filter: blur(5px);
+            background: rgba(0, 0, 0, 0.7);
+            padding: 40px;
+            border-radius: 20px;
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255,255,255,0.1);
         }
-        .section-title { font-family: 'Playfair Display', serif; font-size: 3rem; margin-bottom: 30px; text-transform: uppercase; }
+        .section-title { font-family: 'Playfair Display', serif; font-size: 3rem; margin-bottom: 25px; color: #f39c12; }
 
-        /* 1. ASOSIY BO'LIM */
-        #home {
-            height: 100vh;
-            background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&w=1500&q=80');
-        }
-        .hero-text h1 { font-size: 5rem; letter-spacing: 10px; }
+        /* BO'LIMLAR UCHUN RASMLAR */
+        #home { background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&w=1500&q=80'); }
+        #stats { background-image: url('https://images.unsplash.com/photo-1551288049-bbbda536339a?auto=format&fit=crop&w=1500&q=80'); }
+        #articles { background-image: url('https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=1500&q=80'); }
+        #books { background-image: url('https://images.unsplash.com/photo-1507842217343-583bb7270b66?auto=format&fit=crop&w=1500&q=80'); }
+        #ai-model { background-image: url('https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=1500&q=80'); }
+        #gallery { background-image: url('https://images.unsplash.com/photo-1500628539600-e042f3e16bb6?auto=format&fit=crop&w=1500&q=80'); }
+        #hobbies { background-image: url('https://images.unsplash.com/photo-1502404642581-79b004ea137e?auto=format&fit=crop&w=1500&q=80'); }
+        #contact { background-image: url('https://images.unsplash.com/photo-1423666639041-f56000c27a9a?auto=format&fit=crop&w=1500&q=80'); }
 
-        /* 2. STATISTIKA */
-        #stats {
-            background-image: url('https://images.unsplash.com/photo-1551288049-bbbda536339a?auto=format&fit=crop&w=1500&q=80');
-        }
-        .stats-grid { display: flex; justify-content: space-around; flex-wrap: wrap; gap: 20px; }
-        .stat-card { background: rgba(243, 156, 18, 0.8); padding: 30px; border-radius: 10px; min-width: 200px; }
+        /* KARTALAR */
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 30px; }
+        .card { background: rgba(255,255,255,0.1); padding: 20px; border-radius: 15px; border: 1px solid rgba(255,255,255,0.1); }
+        
+        /* AI MODEL QISMI */
+        #webcam-container { margin: 20px auto; border: 5px solid #f39c12; border-radius: 15px; overflow: hidden; width: fit-content; background: #000; }
+        .ai-btn { background: #f39c12; color: white; border: none; padding: 15px 30px; border-radius: 30px; cursor: pointer; font-weight: bold; transition: 0.3s; }
+        .ai-btn:hover { background: #e67e22; transform: scale(1.05); }
 
-        /* 3. MAQOLALAR */
-        #articles {
-            background-image: url('https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=1500&q=80');
-        }
-        .grid-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
-        .glass-card { background: rgba(255, 255, 255, 0.1); padding: 25px; border: 1px solid rgba(255,255,255,0.2); border-radius: 15px; }
-
-        /* 4. KITOBLAR */
-        #books {
-            background-image: url('https://images.unsplash.com/photo-1507842217343-583bb7270b66?auto=format&fit=crop&w=1500&q=80');
-        }
-
-        /* 5. MIJOZLAR FIKRI */
-        #testimonials {
-            background-image: url('https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1500&q=80');
-        }
-        .testimonial-box { font-style: italic; font-size: 1.2rem; }
-
-        /* 6. BLOG & YANGILIKLAR */
-        #blog {
-            background-image: url('https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?auto=format&fit=crop&w=1500&q=80');
-        }/* 7. GALEREYA */
-        #gallery {
-            background-image: url('https://images.unsplash.com/photo-1500628539600-e042f3e16bb6?auto=format&fit=crop&w=1500&q=80');
-        }
-        .gallery-img { width: 100%; height: 200px; object-fit: cover; border-radius: 10px; transition: 0.3s; }
-        .gallery-img:hover { transform: scale(1.05); }
-
-        /* 8. QIZIQISHLAR */
-        #hobbies {
-            background-image: url('https://images.unsplash.com/photo-1502404642581-79b004ea137e?auto=format&fit=crop&w=1500&q=80');
-        }
-
-        /* 9. ALOQA */
-        #contact {
-            background-image: url('https://images.unsplash.com/photo-1423666639041-f56000c27a9a?auto=format&fit=crop&w=1500&q=80');
-        }
-
-        footer { background: #000; color: white; text-align: center; padding: 40px; }
-
-        @media (max-width: 768px) {
-            .hero-text h1 { font-size: 2.5rem; }
-            nav ul { display: none; }
-        }
+        footer { background: #000; color: white; text-align: center; padding: 30px; font-size: 14px; }
     </style>
 </head>
 <body>
-
-    <nav>
-        <div class="logo">AFRUZA</div>
+<nav>
+        <div class="logo">AFRUZA.AI</div>
         <ul>
             <li><a href="#home">Asosiy</a></li>
             <li><a href="#stats">Statistika</a></li>
-            <li><a href="#articles">Maqolalar</a></li>
             <li><a href="#books">Kitoblar</a></li>
-            <li><a href="#testimonials">Fikrlar</a></li>
-            <li><a href="#blog">Blog</a></li>
+            <li><a href="#ai-model">AI Model</a></li>
             <li><a href="#gallery">Galereya</a></li>
             <li><a href="#hobbies">Qiziqishlar</a></li>
             <li><a href="#contact">Aloqa</a></li>
         </ul>
     </nav>
 
-    <header id="home">
-        <div class="hero-text">
-            <h1 class="section-title">AFRUZA</h1>
-            <p>Mening Mukammal Portfoliomga Xush Kelibsiz</p>
+    <section id="home">
+        <div class="overlay-box">
+            <h1 style="font-size: 4rem; letter-spacing: 5px;">AFRUZA AXMONOVA</h1>
+            <p style="font-size: 1.2rem; margin-top: 10px;">Dasturchi va Sun'iy Intellekt Tadqiqotchisi</p>
         </div>
-    </header>
+    </section>
 
     <section id="stats">
         <div class="overlay-box">
             <h2 class="section-title">Natijalar</h2>
-            <div class="stats-grid">
-                <div class="stat-card"><h2>120+</h2><p>Loyihalar</p></div>
-                <div class="stat-card"><h2>85+</h2><p>Mijozlar</p></div>
-                <div class="stat-card"><h2>1000+</h2><p>Kitob sahifalari</p></div>
-            </div>
-        </div>
-    </section>
-
-    <section id="articles">
-        <div class="overlay-box">
-            <h2 class="section-title">Maqolalarim</h2>
-            <div class="grid-container">
-                <div class="glass-card"><h3>Texnologiya</h3><p>Veb-saytlar kelajagi va AI haqida maqola.</p></div>
-                <div class="glass-card"><h3>Ta'lim</h3><p>Zamonaviy o'rganish metodikasi bo'yicha tahlillar.</p></div>
-                <div class="glass-card"><h3>Ijod</h3><p>Kreativ fikrlashni rivojlantirish yo'llari.</p></div>
+            <div class="grid">
+                <div class="card"><h2>150+</h2><p>Loyihalar</p></div>
+                <div class="card"><h2>2000+</h2><p>O'qilgan sahifalar</p></div>
+                <div class="card"><h2>98%</h2><p>Model Aniqligi</p></div>
             </div>
         </div>
     </section>
@@ -157,40 +107,32 @@
     <section id="books">
         <div class="overlay-box">
             <h2 class="section-title">Kutubxonam</h2>
-            <p>Sevimli kitoblarim ro'yxati va ulardan olingan xulosalar.</p>
+            <div class="grid">
+                <div class="card"><h4>Psixologiya</h4><p>Inson ongini o'rganish</p></div>
+                <div class="card"><h4>Texnologiya</h4><p>AI va Kelajak</p></div>
+                <div class="card"><h4>Badiiy</h4><p>Klassik asarlar</p></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="ai-model">
+        <div class="overlay-box">
+            <h2 class="section-title">AI Otlarni Tanish</h2>
+            <p>Pastdagi tugmani bosing va kameraga ot rasmini ko'rsating</p>
             <br>
-            <div class="grid-container">
-                <div class="glass-card"><h4>"Ufq"</h4><p>Said Ahmad</p></div>
-                <div class="glass-card"><h4>"Atomic Habits"</h4><p>James Clear</p></div>
-            </div>
+            <button class="ai-btn" onclick="init()"><i class="fas fa-play"></i> Modelni boshlash</button>
+            <div id="webcam-container"></div>
+            <div id="label-container" style="font-size: 1.5rem; margin-top: 20px; color: #f39c12;"></div>
         </div>
     </section>
 
-    <section id="testimonials">
-        <div class="overlay-box">
-            <h2 class="section-title">Mijozlar Fikri</h2>
-            <div class="testimonial-box">
-                <p>"Afruza bilan ishlash juda maroqli! Sayt dizayni va ishlash tezligi a'lo darajada."</p>
-                <br><b>- Akmal Ismoilov</b>
-            </div>
-        </div>
-    </section>
-
-    <section id="blog">
-        <div class="overlay-box">
-            <h2 class="section-title">Blog & Yangiliklar</h2>
-            <div class="grid-container">
-                <div class="glass-card"><h5>Yangilik #1</h5><p>Dasturlash olamidagi oxirgi o'zgarishlar.</p></div>
-                <div class="glass-card"><h5>Yangilik #2</h5><p>Yangi loyiha start oldi!</p></div>
-            </div>
-        </div>
-    </section><section id="gallery">
+    <section id="gallery">
         <div class="overlay-box">
             <h2 class="section-title">Galereya</h2>
-            <div class="grid-container">
-                <img src="https://images.unsplash.com/photo-1493612276216-ee3925520721?auto=format&fit=crop&w=500&q=60" class="gallery-img">
-                <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=500&q=60" class="gallery-img">
-                <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=500&q=60" class="gallery-img">
+            <div class="grid">
+                <img src="https://images.unsplash.com/photo-1518717758536-85ae29035b6d?auto=format&fit=crop&w=300&q=80" style="width:100%; border-radius:10px;">
+                <img src="https://images.unsplash.com/photo-1553284965-83fd3e82fa5a?auto=format&fit=crop&w=300&q=80" style="width:100%; border-radius:10px;">
+                <img src="https://images.unsplash.com/photo-1534067783941-51c9c23ecefd?auto=format&fit=crop&w=300&q=80" style="width:100%; border-radius:10px;">
             </div>
         </div>
     </section>
@@ -198,98 +140,68 @@
     <section id="hobbies">
         <div class="overlay-box">
             <h2 class="section-title">Qiziqishlarim</h2>
-            <div class="stats-grid">
-                <div><i class="fas fa-camera fa-2x"></i><p>Foto</p></div>
-                <div><i class="fas fa-plane fa-2x"></i><p>Sayohat</p></div>
-                <div><i class="fas fa-chess fa-2x"></i><p>Shaxmat</p></div>
+            <div class="grid">
+                <div class="card"><i class="fas fa-code fa-2x"></i><p>Kodlash</p></div>
+                <div class="card"><i class="fas fa-horse fa-2x"></i><p>Otlar</p></div>
+                <div class="card"><i class="fas fa-chess fa-2x"></i><p>Shaxmat</p></div>
             </div>
         </div>
     </section>
 
     <section id="contact">
         <div class="overlay-box">
-            <h2 class="section-title">Aloqa</h2>
-            <p>Telegram: @afruza_axmonova</p>
-            <p>Instagram: @afruza_dev</p>
-            <br>
-            <form style="max-width: 400px; margin: 0 auto;">
-                <input type="text" placeholder="Ismingiz" style="width:100%; padding:10px; margin-bottom:10px;">
-                <textarea placeholder="Xabar" style="width:100%; padding:10px; margin-bottom:10px;"></textarea>
-                <button type="button" style="background:#f39c12; color:white; border:none; padding:10px 20px; cursor:pointer;">Yuborish</button>
-            </form>
+            <h2 class="section-title">Bog'lanish</h2>
+            <p>Email: afruza@example.com</p>
+            <div style="margin-top: 20px;">
+                <a href="#" style="color:white; font-size: 30px; margin: 0 10px;"><i class="fab fa-telegram"></i></a>
+                <a href="#" style="color:white; font-size: 30px; margin: 0 10px;"><i class="fab fa-instagram"></i></a>
+            </div>
         </div>
     </section>
 
     <footer>
-        <p>&copy; 2026 Afruza Axmonova. Barcha huquqlar himoyalangan.</p>
-        <div style="margin-top: 20px;">
-            <a href="#" style="color:white; margin: 0 10px;"><i class="fab fa-telegram"></i></a>
-            <a href="#" style="color:white; margin: 0 10px;"><i class="fab fa-instagram"></i></a>
-        </div>
-
-        <section id="ai-model" style="background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1518717758536-85ae29035b6d?auto=format&fit=crop&w=1500&q=80'); background-size: cover; padding: 100px 10%; color: white; text-align: center;">
-    <div style="background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); padding: 40px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.2);">
-        <h2 style="font-family: 'Playfair Display', serif; font-size: 2.5rem; margin-bottom: 20px;">AI Otlarni Tanish Modeli</h2>
-        <p style="margin-bottom: 30px;">Veb-kamerani yoqing va model otlarni qanday tanishini jonli ko'ring!</p>
-        
-        <button type="button" onclick="init()" style="background: #f39c12; color: white; border: none; padding: 15px 40px; font-weight: bold; border-radius: 30px; cursor: pointer; transition: 0.3s; margin-bottom: 20px;">
-            <i class="fas fa-video"></i> Modelni Ishga Tushirish
-        </button>
-
-        <div id="webcam-container" style="margin: 20px auto; border: 5px solid #fff; border-radius: 15px; width: fit-content; overflow: hidden; background: #000;"></div>
-        <div id="label-container" style="font-size: 1.5rem; font-weight: bold; color: #f39c12;"></div>
-    </div>
-</section>
-
-<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest/dist/teachablemachine-image.min.js"></script>
-<script type="text/javascript">
-    // Model havolasi
-    const URL = "https://teachablemachine.withgoogle.com/models/6VmBEHEsL/";
-
-    let model, webcam, labelContainer, maxPredictions;
-
-    // Modelni yuklash va kamerani sozlash
-    async function init() {
-        const modelURL = URL + "model.json";
-        const metadataURL = URL + "metadata.json";
-
-        // Modelni yuklash
-        model = await tmImage.load(modelURL, metadataURL);
-        maxPredictions = model.getTotalClasses();
-
-        // Veb-kamerani sozlash
-        const flip = true; 
-        webcam = new tmImage.Webcam(400, 400, flip); 
-        await webcam.setup(); 
-        await webcam.play();
-        window.requestAnimationFrame(loop);
-
-        // Elementlarni DOM-ga qo'shish
-        document.getElementById("webcam-container").appendChild(webcam.canvas);
-        labelContainer = document.getElementById("label-container");
-        for (let i = 0; i < maxPredictions; i++) {
-            labelContainer.appendChild(document.createElement("div"));
-        }
-    }
-
-    async function loop() {
-        webcam.update(); 
-        await predict();
-        window.requestAnimationFrame(loop);
-    }
-
-    // Bashorat qilish
-    async function predict() {
-        const prediction = await model.predict(webcam.canvas);
-        for (let i = 0; i < maxPredictions; i++) {
-            const classPrediction =
-                prediction[i].className + ": " + (prediction[i].probability * 100).toFixed(2) + "%";
-            labelContainer.childNodes[i].innerHTML = classPrediction;
-        }
-    }
-</script>
+        <p>&copy; 2026 Afruza Axmonova | Teachable Machine AI Project</p>
     </footer>
+ <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest/dist/teachablemachine-image.min.js"></script>
+    <script type="text/javascript">
+        const URL = "https://teachablemachine.withgoogle.com/models/6VmBEHEsL/";
+        let model, webcam, labelContainer, maxPredictions;
 
+        async function init() {
+            const modelURL = URL + "model.json";
+            const metadataURL = URL + "metadata.json";
+            model = await tmImage.load(modelURL, metadataURL);
+            maxPredictions = model.getTotalClasses();
+
+            const flip = true; 
+            webcam = new tmImage.Webcam(350, 350, flip); 
+            await webcam.setup(); 
+            await webcam.play();
+            window.requestAnimationFrame(loop);
+
+            document.getElementById("webcam-container").innerHTML = "";
+            document.getElementById("webcam-container").appendChild(webcam.canvas);
+            labelContainer = document.getElementById("label-container");
+            labelContainer.innerHTML = "";
+            for (let i = 0; i < maxPredictions; i++) {
+                labelContainer.appendChild(document.createElement("div"));
+            }
+        }
+
+        async function loop() {
+            webcam.update();
+            await predict();
+            window.requestAnimationFrame(loop);
+        }
+
+        async function predict() {
+            const prediction = await model.predict(webcam.canvas);
+            for (let i = 0; i < maxPredictions; i++) {
+                const classPrediction = prediction[i].className + ": " + (prediction[i].probability * 100).toFixed(0) + "%";
+                labelContainer.childNodes[i].innerHTML = classPrediction;
+            }
+        }
+    </script>
 </body>
 </html>
