@@ -9,64 +9,65 @@
             margin: 0;
             background: #0f1013;
             color: white;
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, sans-serif;
             display: flex;
-            flex-direction: column;
-            align-items: center;
             justify-content: center;
+            align-items: center;
             height: 100vh;
         }
-        .ai-box {
+        .container {
             background: #1a1b1f;
             padding: 30px;
-            border-radius: 20px;
-            border: 2px solid #333;
+            border-radius: 25px;
+            border: 1px solid #333;
             text-align: center;
-            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+            width: 90%;
+            max-width: 450px;
         }
         #webcam-container {
-            width: 350px;
-            height: 350px;
+            width: 320px;
+            height: 320px;
             background: #000;
             border: 4px solid #ff4444;
-            border-radius: 15px;
-            margin: 20px 0;
+            border-radius: 20px;
+            margin: 20px auto;
             overflow: hidden;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            position: relative;
         }
         canvas { width: 100% !important; height: 100% !important; }
         .btn {
             background: #ff4444;
             color: white;
             border: none;
-            padding: 15px 40px;
-            border-radius: 10px;
+            padding: 15px 35px;
+            border-radius: 12px;
             font-weight: bold;
             cursor: pointer;
             font-size: 1.1rem;
+            width: 100%;
         }
-        .btn:disabled { background: #555; cursor: not-allowed; }
-        .result {
+        .btn:disabled { background: #444; cursor: wait; }
+        .result-text {
             font-size: 1.4rem;
+            margin-top: 15px;
             color: #ffcc00;
-            margin-top: 10px;
+            font-weight: bold;
         }
     </style>
 </head>
 <body>
 
-<div class="ai-box">
+<div class="container">
+    <h2>AI Ot Detektori</h2>
     <button id="start-btn" class="btn" onclick="init()">MODELNI BOSHLASH</button>
     
     <div id="webcam-container">
-        <div id="status">Kamera kutilmoqda...</div>
+        <div id="status" style="position: absolute; top: 45%; width: 100%; color: #666;">Kamera kutilmoqda...</div>
     </div>
 
-    <div class="result">
+    <div class="result-text">
         <div id="label-ot">otlar: 0%</div>
-        <div id="label-boshqa">boshqa narsalar: 0%</div>
+        <div id="label-boshqa">boshqa: 0%</div>
     </div>
 </div>
 
@@ -74,10 +75,10 @@
 <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest/dist/teachablemachine-image.min.js"></script>
 
 <script type="text/javascript">
-    // Google Teachable Machine model linki
+    // Bu model manzili Google serverida joylashgan
     const URL = "https://teachablemachine.withgoogle.com/models/I7S_v2vM-/"; 
     
-    let model, webcam, labelOt, labelBoshqa, maxPredictions;
+    let model, webcam, maxPredictions;
 
     async function init() {
         const btn = document.getElementById("start-btn");
@@ -85,40 +86,32 @@
         
         btn.disabled = true;
         btn.innerHTML = "Yuklanmoqda...";
-        status.innerHTML = "Model yuklanmoqda, kuting...";
+        status.innerHTML = "Model yuklanmoqda...";
 
         try {
-            const modelURL = URL + "model.json";
-            const metadataURL = URL + "metadata.json";
-
             // 1. Modelni yuklash
-            model = await tmImage.load(modelURL, metadataURL);
+            model = await tmImage.load(URL + "model.json", URL + "metadata.json");
             maxPredictions = model.getTotalClasses();
 
-            // 2. Kamerani sozlash
-            const flip = true; 
-            webcam = new tmImage.Webcam(350, 350, flip); 
+            // 2. Kamerani yoqish
+            status.innerHTML = "Kameraga ruxsat bering...";
+            webcam = new tmImage.Webcam(320, 320, true); 
             
-            await webcam.setup(); // Kameraga ruxsat so'rash
+            await webcam.setup(); // Kamera ruxsatini so'rash
             await webcam.play();
             
             window.requestAnimationFrame(loop);
 
-            // 3. Ekranga chiqarish
+            // 3. Ekranda ko'rsatish
             document.getElementById("webcam-container").innerHTML = "";
             document.getElementById("webcam-container").appendChild(webcam.canvas);
-            
-            labelOt = document.getElementById("label-ot");
-            labelBoshqa = document.getElementById("label-boshqa");
-            
-            btn.style.display = "none"; // Tugmani yashirish
+            btn.style.display = "none"; 
             
         } catch (e) {
             console.error(e);
-            alert("XATOLIK: Kamera ochilmadi! Sababi: " + e.message);
+            alert("Xato yuz berdi: " + e.message + "\n\nEslatma: Sayt faqat HTTPS manzilda ishlaydi!");
             btn.disabled = false;
             btn.innerHTML = "MODELNI BOSHLASH";
-            status.innerHTML = "Xatolik yuz berdi.";
         }
     }
 
@@ -126,7 +119,8 @@
         webcam.update(); 
         await predict();
         window.requestAnimationFrame(loop);
- async function predict() {
+    }
+async function predict() {
         const prediction = await model.predict(webcam.canvas);
         
         for (let i = 0; i < maxPredictions; i++) {
@@ -134,9 +128,9 @@
             let prob = (prediction[i].probability * 100).toFixed(0);
 
             if (name.includes("ot") || name.includes("horse")) {
-                labelOt.innerHTML = otlar: ${prob}%;
+                document.getElementById("label-ot").innerHTML = otlar: ${prob}%;
             } else {
-                labelBoshqa.innerHTML = boshqa narsalar: ${prob}%;
+                document.getElementById("label-boshqa").innerHTML = boshqa: ${prob}%;
             }
         }
     }
