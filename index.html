@@ -2,132 +2,57 @@
 <html lang="uz">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Ot Detektori - Faqat Model</title>
+    <title>AI Ot Detektori</title>
     <style>
-        /* Sahifa markazida joylashtirish */
-        body {
-            margin: 0;
-            background: #0f1013;
-            color: white;
-            font-family: 'Montserrat', sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            overflow: hidden;
+        body { background: #0f1013; color: white; text-align: center; font-family: sans-serif; }
+        #webcam-container { 
+            width: 350px; height: 350px; border: 5px solid #f39c12; 
+            border-radius: 15px; margin: 20px auto; background: #000;
         }
-
-        .ai-box {
-            background: #16181d;
-            padding: 30px;
-            border-radius: 20px;
-            border: 1px solid rgba(255,255,255,0.1);
-            text-align: center;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-        }
-
-        h2 { color: #f39c12; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 1px; }
-
-        /* Kamera oynasi */
-        #webcam-container {
-            margin: 0 auto;
-            border: 5px solid #f39c12;
-            border-radius: 15px;
-            overflow: hidden;
-            width: 350px;
-            height: 350px;
-            background: #000;
-        }
-
         canvas { width: 100% !important; height: 100% !important; }
-
-        /* Tugma dizayni */
-        .btn-ai {
-            background: #f39c12;
-            color: white;
-            border: none;
-            padding: 15px 40px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: bold;
-            font-size: 16px;
-            transition: 0.3s;
-            margin-bottom: 20px;
-        }
-
-        .btn-ai:hover { background: #e67e22; transform: scale(1.05); }
-        .btn-ai:disabled { background: #555; cursor: not-allowed; }
-
-        /* Natija foizlari */
-        #label-container {
-            margin-top: 20px;
-            font-size: 22px;
-            color: #f39c12;
-            font-weight: bold;
-            line-height: 1.6;
-        }
+        .btn { padding: 15px 30px; background: #f39c12; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; }
+        /* NATIJA CHIQADIGAN JOY */
+        #label-container { font-size: 24px; color: #f39c12; margin-top: 20px; font-weight: bold; }
     </style>
 </head>
 <body>
-
-    <div class="ai-box">
-        <h2>AI Model: Otlarni aniqlash</h2>
-        
-        <button id="start-btn" class="btn-ai" onclick="init()">
-            <i class="fas fa-play"></i> MODELNI BOSHLASH
-        </button>
-
-        <div id="webcam-container">
-            </div>
-
-        <div id="label-container">
-            </div>
-    </div>
+    <h2>AI Model: Otlarni aniqlash</h2>
+    <button class="btn" onclick="init()">MODELNI BOSHLASH</button>
+    
+    <div id="webcam-container"></div>
+    
+    <div id="label-container">Kamera yongach, natija bu yerda chiqadi...</div>
 
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest/dist/teachablemachine-image.min.js"></script>
 
-    <script type="text/javascript">
-        // Teachable Machine model manzili
+    <script>
         const URL = "https://teachablemachine.withgoogle.com/models/6VmBEHEsL/";
         let model, webcam, labelContainer, maxPredictions;
 
         async function init() {
-            const startBtn = document.getElementById("start-btn");
-            startBtn.innerHTML = "Yuklanmoqda...";
-            startBtn.disabled = true;
-
             try {
-                const modelURL = URL + "model.json";
-                const metadataURL = URL + "metadata.json";
-
                 // Modelni yuklash
-                model = await tmImage.load(modelURL, metadataURL);
+                model = await tmImage.load(URL + "model.json", URL + "metadata.json");
                 maxPredictions = model.getTotalClasses();
 
-                // Kamerani sozlash
-                const flip = true; 
-                webcam = new tmImage.Webcam(350, 350, flip); 
+                // Kamerani yoqish
+                webcam = new tmImage.Webcam(350, 350, true); 
                 await webcam.setup(); 
                 await webcam.play();
-                
                 window.requestAnimationFrame(loop);
 
-                // Ekranga chiqarish
+                // Kamerani ekranga chiqarish
                 document.getElementById("webcam-container").appendChild(webcam.canvas);
+                
+                // Natija maydonini tayyorlash
                 labelContainer = document.getElementById("label-container");
-                labelContainer.innerHTML = ""; // Tozalash
-[01.04.2026 18:31] ㅤㅤㅤㅤㅤ: for (let i = 0; i < maxPredictions; i++) {
+                labelContainer.innerHTML = ""; // Eski yozuvni o'chirish
+                for (let i = 0; i < maxPredictions; i++) {
                     labelContainer.appendChild(document.createElement("div"));
                 }
-                
-                startBtn.style.display = "none"; // Kamera yongandan keyin tugmani yashirish
             } catch (e) {
-                console.error(e);
-                alert("Xatolik: Kamera ochilmadi yoki model yuklanmadi. Sayt HTTPS orqali ochilganiga ishonch hosil qiling!");
-                startBtn.disabled = false;
-                startBtn.innerHTML = "Qayta urinish";
+                alert("Xato: Kameraga ruxsat berilmagan yoki model yuklanmadi!");
             }
         }
 
@@ -140,9 +65,9 @@
         async function predict() {
             const prediction = await model.predict(webcam.canvas);
             for (let i = 0; i < maxPredictions; i++) {
-                const classPrediction =
+                // Har bir natijani ekranga chiqarish (Masalan: otlar: 100%)
+                labelContainer.childNodes[i].innerHTML = 
                     prediction[i].className + ": " + (prediction[i].probability * 100).toFixed(0) + "%";
-                labelContainer.childNodes[i].innerHTML = classPrediction;
             }
         }
     </script>
