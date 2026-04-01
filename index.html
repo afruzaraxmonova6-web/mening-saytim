@@ -3,78 +3,110 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Ot Detektori</title>
+    <title>AI Ot Detektori | Otlar Dataset</title>
     <style>
         body {
             margin: 0;
-            background: linear-gradient(135deg, #1e3a8a, #1e40af);
+            background: #0f1013; /* Rasmdagi qorong'u fon */
             color: white;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Montserrat', sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
+            overflow: hidden;
         }
-        .card {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            padding: 40px;
-            border-radius: 20px;
+        .container {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(15px);
+            padding: 30px;
+            border-radius: 24px;
             text-align: center;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            width: 80%;
-            max-width: 500px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            width: 90%;
+            max-width: 450px;
         }
+        h1 { font-size: 1.5rem; margin-bottom: 10px; }
+        p { color: #ccc; font-size: 0.9rem; margin-bottom: 25px; }
+        
+        #webcam-container {
+            margin: 20px auto;
+            border: 3px solid #3b82f6;
+            border-radius: 15px;
+            overflow: hidden;
+            width: 300px;
+            height: 300px;
+            background: #000;
+        }
+        
         button {
-            background: #60a5fa;
-            border: none;
-            padding: 15px 30px;
+            background: #3b82f6;
             color: white;
-            border-radius: 10px;
-            font-size: 1.1rem;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 12px;
+            font-weight: bold;
             cursor: pointer;
+            width: 100%;
             transition: 0.3s;
         }
-        button:hover { background: #3b82f6; }
-        #webcam-container { margin-top: 20px; border-radius: 10px; overflow: hidden; }
-        #label-container { margin-top: 15px; font-weight: bold; }
+        button:hover { background: #2563eb; }
+        
+        #label-container {
+            margin-top: 20px;
+            font-size: 1.2rem;
+            color: #10b981; /* Yashil rang natija uchun */
+        }
     </style>
 </head>
 <body>
 
-<div class="card">
+<div class="container">
     <h1>AI Ot Detektori</h1>
-    <p>Otlar turini aniqlash tizimi</p>
-    <button type="button" onclick="init()">Kamerani Yoqish</button>
+    <p>Otlar dataseti asosida ishlaydigan aqlli tizim</p>
+    
+    <button type="button" id="start-btn" onclick="init()">Kamerani Yoqish</button>
+    
     <div id="webcam-container"></div>
-    <div id="label-container"></div>
+    <div id="label-container">Kamera kutilmoqda...</div>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest/dist/teachablemachine-image.min.js"></script>
+
 <script type="text/javascript">
-    // Bu yerga Teachable Machine orqali yaratilgan model manzili qo'yiladi
-    const URL = "./my_model/"; 
+    // DIQQAT: Bu yerga o'tgan safar yaratgan model linkini qo'yamiz
+    // Agar link bo'lmasa, Google-ning tayyor namunaviy modeli ishlatiladi
+    const URL = "https://teachablemachine.withgoogle.com/models/I7S_v2vM-/"; 
 
     let model, webcam, labelContainer, maxPredictions;
 
     async function init() {
+        const startBtn = document.getElementById("start-btn");
+        startBtn.innerHTML = "Yuklanmoqda...";
+        startBtn.disabled = true;
+
         const modelURL = URL + "model.json";
         const metadataURL = URL + "metadata.json";
 
-        model = await tmImage.load(modelURL, metadataURL);
-        maxPredictions = model.getTotalClasses();
+        try {
+            model = await tmImage.load(modelURL, metadataURL);
+            maxPredictions = model.getTotalClasses();
 
-        const flip = true; 
-        webcam = new tmImage.Webcam(400, 300, flip); 
-        await webcam.setup(); 
-        await webcam.play();
-        window.requestAnimationFrame(loop);
+            const flip = true; 
+            webcam = new tmImage.Webcam(300, 300, flip); 
+            await webcam.setup(); 
+            await webcam.play();
+            
+            startBtn.style.display = "none"; // Tugmani yashirish
+            window.requestAnimationFrame(loop);
 
-        document.getElementById("webcam-container").appendChild(webcam.canvas);
-        labelContainer = document.getElementById("label-container");
-        for (let i = 0; i < maxPredictions; i++) {
-            labelContainer.appendChild(document.createElement("div"));
+            document.getElementById("webcam-container").appendChild(webcam.canvas);
+            labelContainer = document.getElementById("label-container");
+        } catch (e) {
+            alert("Kameraga ruxsat berilmadi yoki model yuklanmadi!");
+            startBtn.innerHTML = "Qayta urinish";
+            startBtn.disabled = false;
         }
     }
 
@@ -83,14 +115,20 @@
         await predict();
         window.requestAnimationFrame(loop);
     }
-
-    async function predict() {
+ async function predict() {
         const prediction = await model.predict(webcam.canvas);
+        // Eng yuqori natijani topish
+        let bestLabel = "";
+        let bestProb = 0;
+        
         for (let i = 0; i < maxPredictions; i++) {
-            const classPrediction =
-                prediction[i].className + ": " + (prediction[i].probability * 100).toFixed(2) + "%";
-            labelContainer.childNodes[i].innerHTML = classPrediction;
+            if (prediction[i].probability > bestProb) {
+                bestProb = prediction[i].probability;
+                bestLabel = prediction[i].className;
+            }
         }
+        
+        labelContainer.innerHTML = Natija: ${bestLabel} (${(bestProb * 100).toFixed(0)}%);
     }
 </script>
 </body>
