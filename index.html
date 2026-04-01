@@ -3,138 +3,148 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Ot Detektori</title>
+    <title>AI Ot Detektori - Faqat Model</title>
     <style>
+        /* Sahifa markazida joylashtirish */
         body {
             margin: 0;
             background: #0f1013;
             color: white;
-            font-family: 'Segoe UI', Tahoma, sans-serif;
+            font-family: 'Montserrat', sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-        }
-        .container {
-            background: #1a1b1f;
-            padding: 30px;
-            border-radius: 25px;
-            border: 1px solid #333;
-            text-align: center;
-            width: 90%;
-            max-width: 450px;
-        }
-        #webcam-container {
-            width: 320px;
-            height: 320px;
-            background: #000;
-            border: 4px solid #ff4444;
-            border-radius: 20px;
-            margin: 20px auto;
             overflow: hidden;
-            position: relative;
         }
+
+        .ai-box {
+            background: #16181d;
+            padding: 30px;
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        h2 { color: #f39c12; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 1px; }
+
+        /* Kamera oynasi */
+        #webcam-container {
+            margin: 0 auto;
+            border: 5px solid #f39c12;
+            border-radius: 15px;
+            overflow: hidden;
+            width: 350px;
+            height: 350px;
+            background: #000;
+        }
+
         canvas { width: 100% !important; height: 100% !important; }
-        .btn {
-            background: #ff4444;
+
+        /* Tugma dizayni */
+        .btn-ai {
+            background: #f39c12;
             color: white;
             border: none;
-            padding: 15px 35px;
-            border-radius: 12px;
-            font-weight: bold;
+            padding: 15px 40px;
+            border-radius: 8px;
             cursor: pointer;
-            font-size: 1.1rem;
-            width: 100%;
-        }
-        .btn:disabled { background: #444; cursor: wait; }
-        .result-text {
-            font-size: 1.4rem;
-            margin-top: 15px;
-            color: #ffcc00;
             font-weight: bold;
+            font-size: 16px;
+            transition: 0.3s;
+            margin-bottom: 20px;
+        }
+
+        .btn-ai:hover { background: #e67e22; transform: scale(1.05); }
+        .btn-ai:disabled { background: #555; cursor: not-allowed; }
+
+        /* Natija foizlari */
+        #label-container {
+            margin-top: 20px;
+            font-size: 22px;
+            color: #f39c12;
+            font-weight: bold;
+            line-height: 1.6;
         }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <h2>AI Ot Detektori</h2>
-    <button id="start-btn" class="btn" onclick="init()">MODELNI BOSHLASH</button>
-    
-    <div id="webcam-container">
-        <div id="status" style="position: absolute; top: 45%; width: 100%; color: #666;">Kamera kutilmoqda...</div>
+    <div class="ai-box">
+        <h2>AI Model: Otlarni aniqlash</h2>
+        
+        <button id="start-btn" class="btn-ai" onclick="init()">
+            <i class="fas fa-play"></i> MODELNI BOSHLASH
+        </button>
+
+        <div id="webcam-container">
+            </div>
+
+        <div id="label-container">
+            </div>
     </div>
 
-    <div class="result-text">
-        <div id="label-ot">otlar: 0%</div>
-        <div id="label-boshqa">boshqa: 0%</div>
-    </div>
-</div>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest/dist/teachablemachine-image.min.js"></script>
 
-<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest/dist/teachablemachine-image.min.js"></script>
+    <script type="text/javascript">
+        // Teachable Machine model manzili
+        const URL = "https://teachablemachine.withgoogle.com/models/6VmBEHEsL/";
+        let model, webcam, labelContainer, maxPredictions;
 
-<script type="text/javascript">
-    // Bu model manzili Google serverida joylashgan
-    const URL = "https://teachablemachine.withgoogle.com/models/I7S_v2vM-/"; 
-    
-    let model, webcam, maxPredictions;
+        async function init() {
+            const startBtn = document.getElementById("start-btn");
+            startBtn.innerHTML = "Yuklanmoqda...";
+            startBtn.disabled = true;
 
-    async function init() {
-        const btn = document.getElementById("start-btn");
-        const status = document.getElementById("status");
-        
-        btn.disabled = true;
-        btn.innerHTML = "Yuklanmoqda...";
-        status.innerHTML = "Model yuklanmoqda...";
+            try {
+                const modelURL = URL + "model.json";
+                const metadataURL = URL + "metadata.json";
 
-        try {
-            // 1. Modelni yuklash
-            model = await tmImage.load(URL + "model.json", URL + "metadata.json");
-            maxPredictions = model.getTotalClasses();
+                // Modelni yuklash
+                model = await tmImage.load(modelURL, metadataURL);
+                maxPredictions = model.getTotalClasses();
 
-            // 2. Kamerani yoqish
-            status.innerHTML = "Kameraga ruxsat bering...";
-            webcam = new tmImage.Webcam(320, 320, true); 
-            
-            await webcam.setup(); // Kamera ruxsatini so'rash
-            await webcam.play();
-            
-            window.requestAnimationFrame(loop);
+                // Kamerani sozlash
+                const flip = true; 
+                webcam = new tmImage.Webcam(350, 350, flip); 
+                await webcam.setup(); 
+                await webcam.play();
+                
+                window.requestAnimationFrame(loop);
 
-            // 3. Ekranda ko'rsatish
-            document.getElementById("webcam-container").innerHTML = "";
-            document.getElementById("webcam-container").appendChild(webcam.canvas);
-            btn.style.display = "none"; 
-            
-        } catch (e) {
-            console.error(e);
-            alert("Xato yuz berdi: " + e.message + "\n\nEslatma: Sayt faqat HTTPS manzilda ishlaydi!");
-            btn.disabled = false;
-            btn.innerHTML = "MODELNI BOSHLASH";
-        }
-    }
-
-    async function loop() {
-        webcam.update(); 
-        await predict();
-        window.requestAnimationFrame(loop);
-    }
-async function predict() {
-        const prediction = await model.predict(webcam.canvas);
-        
-        for (let i = 0; i < maxPredictions; i++) {
-            let name = prediction[i].className.toLowerCase();
-            let prob = (prediction[i].probability * 100).toFixed(0);
-
-            if (name.includes("ot") || name.includes("horse")) {
-                document.getElementById("label-ot").innerHTML = otlar: ${prob}%;
-            } else {
-                document.getElementById("label-boshqa").innerHTML = boshqa: ${prob}%;
+                // Ekranga chiqarish
+                document.getElementById("webcam-container").appendChild(webcam.canvas);
+                labelContainer = document.getElementById("label-container");
+                labelContainer.innerHTML = ""; // Tozalash
+[01.04.2026 18:31] ㅤㅤㅤㅤㅤ: for (let i = 0; i < maxPredictions; i++) {
+                    labelContainer.appendChild(document.createElement("div"));
+                }
+                
+                startBtn.style.display = "none"; // Kamera yongandan keyin tugmani yashirish
+            } catch (e) {
+                console.error(e);
+                alert("Xatolik: Kamera ochilmadi yoki model yuklanmadi. Sayt HTTPS orqali ochilganiga ishonch hosil qiling!");
+                startBtn.disabled = false;
+                startBtn.innerHTML = "Qayta urinish";
             }
         }
-    }
-</script>
 
+        async function loop() {
+            webcam.update(); 
+            await predict();
+            window.requestAnimationFrame(loop);
+        }
+
+        async function predict() {
+            const prediction = await model.predict(webcam.canvas);
+            for (let i = 0; i < maxPredictions; i++) {
+                const classPrediction =
+                    prediction[i].className + ": " + (prediction[i].probability * 100).toFixed(0) + "%";
+                labelContainer.childNodes[i].innerHTML = classPrediction;
+            }
+        }
+    </script>
 </body>
 </html>
